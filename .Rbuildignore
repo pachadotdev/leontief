@@ -1,0 +1,9 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+data-raw
+^CODE_OF_CONDUCT\.md$
+^\.github$
+^codecov\.yml$
+^\.covrignore$
+^codemeta\.json$

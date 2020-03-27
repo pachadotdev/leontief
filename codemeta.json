@@ -1,0 +1,105 @@
+{
+  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@type": "SoftwareSourceCode",
+  "identifier": "inputoutput",
+  "description": "Input-Output Analysis in R inspired after the PyIO Python library.",
+  "name": "inputoutput: Input-Output Analysis",
+  "codeRepository": "https://pachamaltese.github.io/inputoutput",
+  "issueTracker": "https://github.com/pachamaltese/inputoutput/issues",
+  "license": "https://spdx.org/licenses/GPL-3.0",
+  "version": "1.0",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "version": "3.6.3",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 3.6.3 (2020-02-29)",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Mauricio",
+      "familyName": "Vargas",
+      "email": "mvargas@dcc.uchile.cl",
+      "@id": "https://orcid.org/0000-0003-1017-7574"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Organization",
+      "name": "Central Bank of Chile"
+    }
+  ],
+  "copyrightHolder": {},
+  "funder": {},
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Mauricio",
+      "familyName": "Vargas",
+      "email": "mvargas@dcc.uchile.cl",
+      "@id": "https://orcid.org/0000-0003-1017-7574"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "covr",
+      "name": "covr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=covr"
+    }
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "Rcpp",
+      "name": "Rcpp",
+      "version": ">= 1.0.4",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=Rcpp"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 3.2"
+    }
+  ],
+  "fileSize": "10.36KB",
+  "developmentStatus": "https://www.tidyverse.org/lifecycle/#maturing"
+}

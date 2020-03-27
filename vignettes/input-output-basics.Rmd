@@ -1,0 +1,62 @@
+---
+title: "input-output-basics"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{input-output-basics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(inputoutput)
+```
+
+## Common variables
+
+Let `X` be the input-output matrix and `d` the total final demand vector.
+
+```{r}
+M <- demand_matrix_12x12
+aggregated_demands <- c("intermediate_total_demand","total_final_demand")
+X <- M[ ,!colnames(M) %in% aggregated_demands]
+d <- M[,"total_final_demand"]
+```
+
+## Leontief approach
+
+### Input requirement matrix
+
+Let `A` be the direct coefficients matrix.
+
+```{r}
+A <- input_requirement_matrix(X, d)
+```
+
+### Leontief inverse matrix
+
+```{r}
+L <- leontief_inverse(A)
+```
+
+## Ghosh approach
+
+### Output allocation matrix
+
+Let `B` be the output allocation matrix.
+
+```{r}
+B <- output_allocation_matrix(X, d)
+```
+
+### Ghosh inverse matrix
+
+```{r}
+G <- ghosh_inverse(A)
+```
