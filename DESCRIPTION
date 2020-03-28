@@ -15,15 +15,18 @@ Authors@R: c(
 Description: Input-Output Analysis in R inspired after the PyIO Python library.
 License: GPL-3
 Imports: 
-    Rcpp (>= 1.0.4)
+    Rcpp
 LinkingTo: Rcpp, RcppArmadillo
 Suggests: 
     knitr,
     rmarkdown,
-    covr
+    covr,
+    roxygen2,
+    testthat
 VignetteBuilder: knitr
 LazyData: true
 Depends: 
     R (>= 3.2)
 URL: https://pachamaltese.github.io/inputoutput
 BugReports: https://github.com/pachamaltese/inputoutput/issues
+RoxygenNote: 7.1.0
