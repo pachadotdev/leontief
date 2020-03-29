@@ -155,3 +155,183 @@ arma::mat equilibrium_output(const arma::mat & L, const arma::vec & d) {
     
     return L * d;
 }
+
+//' Output multiplier
+//' @param L Leontief inverse matrix
+//' @examples
+//' set.seed(200100)
+//' L <- matrix(rnorm(100), nrow = 10)
+//' output_multiplier(L)
+//' @export
+// [[Rcpp::export]]
+arma::mat output_multiplier(const arma::mat & L) {
+    bool L_square = (L.n_rows == L.n_cols);
+    if(L_square == FALSE) {
+        Rcpp::stop("Leontief inverse matrix must be square.");
+    }
+    
+    return arma::sum(L, 0).t();
+}
+
+//' Income multiplier
+//' @param L Leontief inverse matrix
+//' @param w wage vector
+//' @export
+// [[Rcpp::export]]
+arma::mat income_multiplier(const arma::mat & L, const arma::vec & w) {
+    bool L_square = (L.n_rows == L.n_cols);
+    bool compatible_dimensions = (L.n_rows == w.n_elem);
+    if(L_square == FALSE) {
+        Rcpp::stop("Leontief inverse matrix must be square.");
+    }
+    if(compatible_dimensions == FALSE) {
+        Rcpp::stop("w is required to have the same number of elements as the number of rows in L.");
+    }
+    
+    arma::mat W = arma::zeros<arma::mat>(w.n_elem,w.n_elem);
+    W.each_col() += w;
+    
+    return (arma::sum((L % W), 0).t() / w);
+}
+
+//' Employment multiplier
+//' @param L Leontief inverse matrix
+//' @param e employment vector
+//' @export
+// [[Rcpp::export]]
+arma::mat employment_multiplier(const arma::mat & L, const arma::vec & e) {
+    bool L_square = (L.n_rows == L.n_cols);
+    bool compatible_dimensions = (L.n_rows == e.n_elem);
+    if(L_square == FALSE) {
+        Rcpp::stop("Leontief inverse matrix must be square.");
+    }
+    if(compatible_dimensions == FALSE) {
+        Rcpp::stop("e is required to have the same number of elements as the number of rows in L.");
+    }
+    
+    arma::mat E = arma::zeros<arma::mat>(e.n_elem,e.n_elem);
+    E.each_col() += e;
+    
+    return (arma::sum((L % E), 0).t() / e);
+}
+
+//' Input multiplier
+//' @param G Ghosh inverse matrix
+//' @examples
+//' set.seed(200100)
+//' G <- matrix(rnorm(100), nrow = 10)
+//' output_multiplier(G)
+//' @export
+// [[Rcpp::export]]
+arma::mat input_multiplier(const arma::mat & G) {
+    bool G_square = (G.n_rows == G.n_cols);
+    if(G_square == FALSE) {
+        Rcpp::stop("Ghosh inverse matrix must be square.");
+    }
+    
+    return arma::sum(G, 0).t();
+}
+
+//' Backward linkage
+//' @param A input requirement matrix
+//' @export
+// [[Rcpp::export]]
+arma::mat backward_linkage(const arma::mat & A) {
+    bool A_square = (A.n_rows == A.n_cols);
+    if(A_square == FALSE) {
+        Rcpp::stop("Input requirement matrix must be square.");
+    }
+    
+    return (arma::sum(A,0).t());
+}
+
+//' Forward linkage
+//' @param A input requirement matrix
+//' @export
+// [[Rcpp::export]]
+arma::mat forward_linkage(const arma::mat & A) {
+    bool A_square = (A.n_rows == A.n_cols);
+    if(A_square == FALSE) {
+        Rcpp::stop("Input requirement matrix must be square.");
+    }
+    
+    return (arma::sum(A,1));
+}
+
+//' Power of dispersion
+//' @param L Leontief inverse matrix
+//' @export
+// [[Rcpp::export]]
+arma::mat power_dispersion(const arma::mat & L) {
+    bool L_square = (L.n_rows == L.n_cols);
+    if(L_square == FALSE) {
+        Rcpp::stop("Leontief inverse matrix must be square.");
+    }
+    
+    double V = arma::as_scalar(arma::sum(arma::vectorise(L)));
+    return (arma::sum(L,0) * (L.n_rows / V)).t();
+}
+
+//' Power of dispersion coefficient of variation
+//' @param L Leontief inverse matrix
+//' @export
+// [[Rcpp::export]]
+arma::mat power_dispersion_cv(const arma::mat & L) {
+    bool L_square = (L.n_rows == L.n_cols);
+    if(L_square == FALSE) {
+        Rcpp::stop("Leontief inverse matrix must be square.");
+    }
+    
+    arma::mat m = arma::sum(L,0) / L.n_rows;
+    arma::mat S = L;
+    S.each_row() -= m;
+    S = sqrt(arma::sum(S % S, 1) / (L.n_rows - 1));
+    
+    return (S / m.t());
+}
+
+//' Sensitivity of dispersion coefficient of variation
+//' @param L Leontief inverse matrix
+//' @export
+// [[Rcpp::export]]
+arma::mat sensitivity_dispersion(const arma::mat & L) {
+    bool L_square = (L.n_rows == L.n_cols);
+    if(L_square == FALSE) {
+        Rcpp::stop("Leontief inverse matrix must be square.");
+    }
+    
+    double V = arma::as_scalar(arma::sum(arma::vectorise(L)));
+    return (arma::sum(L,1) * (L.n_rows / V));
+}
+
+//' Sensititivy of dispersion coefficient of variation
+//' @param L Leontief inverse matrix
+//' @export
+// [[Rcpp::export]]
+arma::mat sensitivity_dispersion_cv(const arma::mat & L) {
+    bool L_square = (L.n_rows == L.n_cols);
+    if(L_square == FALSE) {
+        Rcpp::stop("Leontief inverse matrix must be square.");
+    }
+    
+    arma::mat m = arma::sum(L,1) / L.n_rows;
+    arma::mat S = L;
+    S.each_col() -= m;
+    S = sqrt(arma::sum(S % S, 0) / (L.n_rows - 1));
+    
+    return (S.t() / m);
+}
+
+//' Multiplier product matrix
+//' @param L Leontief inverse matrix
+//' @export
+// [[Rcpp::export]]
+arma::mat multiplier_product_matrix(const arma::mat & L) {
+    bool L_square = (L.n_rows == L.n_cols);
+    if(L_square == FALSE) {
+        Rcpp::stop("Leontief inverse matrix must be square.");
+    }
+    
+    double V = arma::as_scalar(arma::sum(arma::vectorise(L)));
+    return ((arma::sum(L,0).t() * arma::sum(L,1).t()) / V);
+}

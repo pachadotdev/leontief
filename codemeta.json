@@ -126,7 +126,7 @@
       "version": ">= 3.2"
     }
   ],
-  "fileSize": "22.222KB",
+  "fileSize": "22.129KB",
   "developmentStatus": "https://www.tidyverse.org/lifecycle/#maturing",
   "readme": "https://github.com/pachamaltese/inputoutput/blob/master/README.md",
   "contIntegration": "https://codecov.io/gh/pachamaltese/inputoutput?branch=master"
