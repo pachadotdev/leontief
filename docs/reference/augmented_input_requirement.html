@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Backward linkage — backward_linkage • inputoutput</title>
+<title>Augmented input requirement — augmented_input_requirement • inputoutput</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Backward linkage — backward_linkage" />
-<meta property="og:description" content="Backward linkage" />
+<meta property="og:title" content="Augmented input requirement — augmented_input_requirement" />
+<meta property="og:description" content="Augmented input requirement" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,32 +112,75 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Backward linkage</h1>
+    <h1>Augmented input requirement</h1>
     
-    <div class="hidden name"><code>backward_linkage.Rd</code></div>
+    <div class="hidden name"><code>augmented_input_requirement.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Backward linkage</p>
+    <p>Augmented input requirement</p>
     </div>
 
-    <pre class="usage"><span class='fu'>backward_linkage</span>(<span class='no'>A</span>)</pre>
+    <pre class="usage"><span class='fu'>augmented_input_requirement</span>(<span class='no'>X</span>, <span class='no'>w</span>, <span class='no'>c</span>, <span class='no'>d</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>A</th>
-      <td><p>input requirement matrix</p></td>
+      <th>X</th>
+      <td><p>transaction matrix</p></td>
+    </tr>
+    <tr>
+      <th>w</th>
+      <td><p>wage vector</p></td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td><p>household consumption vector</p></td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td><p>final demand vector</p></td>
     </tr>
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>200100</span>)
+<span class='no'>X</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>100</span>), <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+<span class='no'>w</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>)
+<span class='no'>c</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>)
+<span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>)
+<span class='fu'>augmented_input_requirement</span>(<span class='no'>X</span>,<span class='no'>w</span>,<span class='no'>c</span>,<span class='no'>d</span>)</div><div class='output co'>#&gt;             [,1]      [,2]       [,3]       [,4]       [,5]        [,6]
+#&gt;  [1,] -15.346004 -1.973964  2.2867714 -0.1686484   5.166728 -0.73525084
+#&gt;  [2,]  13.061922 -2.425407 -2.6776604  1.3790554  -3.955380  0.40315653
+#&gt;  [3,]  10.860948  4.900601  0.9226978  0.6177698   5.311282 -0.05076422
+#&gt;  [4,] -21.196858  2.096028 -2.7314846  2.2549222   1.797215 -2.19810982
+#&gt;  [5,]  -1.362137 -2.085547  0.1161758 -5.1425102  -2.317248 -0.25545522
+#&gt;  [6,] -30.210590 -1.344840  2.0034873  0.8335785  -2.453319 -0.84805453
+#&gt;  [7,]  41.472872 -1.030675 -2.1548542  3.4248987   4.364848  1.24204676
+#&gt;  [8,]  11.997273  1.154238  3.1701327  3.6874286  -5.199570 -1.63457944
+#&gt;  [9,] -21.327199 -2.141044  1.2530395 -2.9280167 -11.074503  1.45510254
+#&gt; [10,]  16.312365 -1.639255  3.6310329  0.6905884   1.169745  1.97737947
+#&gt; [11,]  -1.609014 -0.429414  1.2164986  0.8869399  -4.531397 -1.02280754
+#&gt;             [,7]         [,8]        [,9]      [,10]       [,11]
+#&gt;  [1,]  1.5027840 -12.68047050  0.17672707   6.952589 18.04086869
+#&gt;  [2,]  0.4037976  -6.12237764 -0.17048843  -9.966587 -1.15805403
+#&gt;  [3,]  0.8018773  16.29218115 -0.06737316 -11.671337  0.16076279
+#&gt;  [4,] -0.4181114  28.32068615 -0.45856823  22.545630  0.48104345
+#&gt;  [5,] -0.8292523 -24.05906574  0.14037926  -3.799700 12.48834312
+#&gt;  [6,] -1.1308336   0.41804678 -0.85049288  18.392566 -1.98863668
+#&gt;  [7,] -0.9462193   6.74293510  0.22146664  -2.842574  0.01681017
+#&gt;  [8,]  0.8271427 -23.85124086 -1.05161292   9.721347 -3.19874636
+#&gt;  [9,] -0.5813566   0.08792439 -0.30086341  -7.942300  0.05306362
+#&gt; [10,] -0.9647496 -29.66789739  0.13129698   8.530024  9.13239753
+#&gt; [11,] -0.4313620  18.66288560  0.34562184  -9.113877  0.00000000</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

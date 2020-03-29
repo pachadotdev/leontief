@@ -20,65 +20,28 @@ library(inputoutput)
 
 ## Common variables
 
-Let `X` be the input-output matrix and `d` the total final demand vector.
+Let `X` be the input-output matrix, `w` the wage vector, `c` the household
+consumption vector and `d` the total final demand vector.
 
 ```{r}
 X <- transaction_matrix
-d <- wage_demand_matrix[, "final_total_demand"]
 w <- wage_demand_matrix[, "wage"]
+c <- wage_demand_matrix[, "household_consumption"]
+d <- wage_demand_matrix[, "final_total_demand"]
 ```
 
-## Leontief approach
-
-### Input requirement matrix
+## Input requirement matrix
 
 Let `A` be the direct coefficients matrix.
 
 ```{r}
 A <- input_requirement(X, d)
+A_aug <- augmented_input_requirement(X,w,c,d)
+
+A; A_aug
 ```
 
-### Leontief inverse matrix
-
-```{r}
-L <- leontief_inverse(A)
-```
-
-### Output multiplier
-
-```{r}
-output_multiplier(L)
-```
-
-### Household income multiplier
-
-```{r}
-h <- household_income_multiplier(L,w)
-```
-
-### Income multiplier
-
-```{r}
-i <- income_multiplier(L,w)
-```
-
-### Backward linkage
-
-```{r}
-bl <- backward_linkage(L)
-bl_cv <- backward_linkage_cv(L)
-```
-
-### Forward linkage
-
-```{r}
-bl <- forward_linkage(L)
-bl_cv <- forward_linkage_cv(L)
-```
-
-## Ghosh approach
-
-### Output allocation matrix
+## Output allocation matrix
 
 Let `B` be the output allocation matrix.
 
@@ -86,14 +49,101 @@ Let `B` be the output allocation matrix.
 B <- output_allocation(X, d)
 ```
 
-### Ghosh inverse matrix
+## Leontief inverse matrix
+
+```{r}
+L <- leontief_inverse(A); L
+```
+
+## Ghosh inverse matrix
 
 ```{r}
 G <- ghosh_inverse(A)
 ```
 
+## Multipliers
+
+### Output multiplier
+
+```{r}
+out <- output_multiplier(L)
+```
+
 ### Input multiplier
 
 ```{r}
-input_multiplier(G)
+inp <- input_multiplier(G)
 ```
+
+### Income multiplier
+
+```{r}
+inc <- income_multiplier(L,w)
+```
+
+### Summary of multipliers
+
+```{r}
+sm <- cbind(out,inp,inc)
+rownames(sm) <- rownames(X)
+colnames(sm) <- c("output_multiplier", "input_multiplier", "income_multiplier")
+sm
+```
+
+## Linkages
+
+### Backward and forward linkage
+
+```{r}
+bl <- backward_linkage(A)
+fl <- forward_linkage(A)
+bfl <- cbind(bl,fl)
+rownames(bfl) <- rownames(X)
+colnames(bfl) <- c("backward_linkage", "forward_linkage")
+bfl
+```
+
+### Power of dispersion
+
+```{r}
+bl <- power_dispersion(L)
+bl_cv <- power_dispersion_cv(L)
+bl_t <- cbind(bl,bl_cv)
+rownames(bl_t) <- rownames(X)
+colnames(bl_t) <- c("power_dispersion", "power_dispersion_cv")
+bl_t
+```
+
+### Sensitivity of dispersion
+
+```{r}
+sl <- sensitivity_dispersion(L)
+sl_cv <- sensitivity_dispersion_cv(L)
+sl_t <- cbind(sl,sl_cv)
+rownames(sl_t) <- rownames(X)
+colnames(sl_t) <- c("power_dispersion", "power_dispersion_cv")
+sl_t
+```
+
+### Multiplier product matrix
+
+```{r}
+multiplier_product_matrix(L)
+```
+
+### Induced effects (labor/consumption)
+
+```{r}
+bli <- backward_linkage(A_aug)
+fli <- forward_linkage(A_aug)
+bfli <- cbind(bli,fli)
+rownames(bfli) <- c(rownames(X), "wage")
+# wie = with induced effect
+colnames(bfli) <- c("backward_linkage_wie", "forward_linkage_wie")
+bfli
+```
+
+## References
+
+Schuschny, Andrés Ricardo. *Tópicos sobre el modelo de insumo-producto: teoría y aplicaciones*. Cepal, 2005.
+

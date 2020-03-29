@@ -83,13 +83,20 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(inputoutput)</a></code></pre></div>
+<div id="references" class="section level2">
+<h2 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h2>
+<p>These examples are based on: &gt; Schuschny, Andrés Ricardo. <em>Tópicos sobre el modelo de insumo-producto: teoría y aplicaciones</em>. Cepal, 2005.</p>
+<p>The book is available from <a href="https://repositorio.cepal.org/bitstream/handle/11362/4737/S0501011_es.pdf?sequence=1">ECLAC</a> in spanish.</p>
+</div>
 <div id="common-variables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#common-variables" class="anchor"></a>Common variables</h2>
 <p>Let <code>X</code> be the input-output matrix and <code>d</code> the total final demand vector.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">X &lt;-<span class="st"> </span>transaction_matrix</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">d &lt;-<span class="st"> </span>wage_demand_matrix[, <span class="st">"final_total_demand"</span>]</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">w &lt;-<span class="st"> </span>wage_demand_matrix[, <span class="st">"wage"</span>]</a></code></pre></div>
+<a class="sourceLine" id="cb2-3" data-line-number="3">w &lt;-<span class="st"> </span>wage_demand_matrix[, <span class="st">"wage"</span>]</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">c &lt;-<span class="st"> </span>wage_demand_matrix[, <span class="st">"household_consumption"</span>]</a></code></pre></div>
 </div>
 <div id="leontief-approach" class="section level2">
 <h2 class="hasAnchor">
@@ -133,17 +140,17 @@
 <a href="#income-multiplier" class="anchor"></a>Income multiplier</h3>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/income_multiplier.html">income_multiplier</a></span>(L,w)</a></code></pre></div>
 </div>
-<div id="backward-linkage" class="section level3">
+<div id="power-of-dispersion" class="section level3">
 <h3 class="hasAnchor">
-<a href="#backward-linkage" class="anchor"></a>Backward linkage</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">bl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/backward_linkage.html">backward_linkage</a></span>(L)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">bl_cv &lt;-<span class="st"> </span><span class="kw"><a href="../reference/backward_linkage_cv.html">backward_linkage_cv</a></span>(L)</a></code></pre></div>
+<a href="#power-of-dispersion" class="anchor"></a>Power of dispersion</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">bl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/power_dispersion.html">power_dispersion</a></span>(L)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">bl_cv &lt;-<span class="st"> </span><span class="kw"><a href="../reference/power_dispersion_cv.html">power_dispersion_cv</a></span>(L)</a></code></pre></div>
 </div>
 <div id="forward-linkage" class="section level3">
 <h3 class="hasAnchor">
 <a href="#forward-linkage" class="anchor"></a>Forward linkage</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">bl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/forward_linkage.html">forward_linkage</a></span>(L)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">bl_cv &lt;-<span class="st"> </span><span class="kw"><a href="../reference/forward_linkage_cv.html">forward_linkage_cv</a></span>(L)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">bl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/sensitivity_dispersion.html">sensitivity_dispersion</a></span>(L)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">bl_cv &lt;-<span class="st"> </span><span class="kw"><a href="../reference/sensitivity_dispersion_cv.html">sensitivity_dispersion_cv</a></span>(L)</a></code></pre></div>
 </div>
 </div>
 <div id="ghosh-approach" class="section level2">
@@ -187,7 +194,8 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#common-variables">Common variables</a></li>
+<li><a href="#references">References</a></li>
+      <li><a href="#common-variables">Common variables</a></li>
       <li><a href="#leontief-approach">Leontief approach</a></li>
       <li><a href="#ghosh-approach">Ghosh approach</a></li>
       </ul>

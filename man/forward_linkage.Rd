@@ -4,10 +4,10 @@
 \alias{forward_linkage}
 \title{Forward linkage}
 \usage{
-forward_linkage(L)
+forward_linkage(A)
 }
 \arguments{
-\item{L}{Leontief inverse matrix}
+\item{A}{input requirement matrix}
 }
 \description{
 Forward linkage

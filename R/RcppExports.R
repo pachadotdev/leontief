@@ -14,6 +14,23 @@ input_requirement <- function(X, d) {
     .Call('_inputoutput_input_requirement', PACKAGE = 'inputoutput', X, d)
 }
 
+#' Augmented input requirement
+#' @param X transaction matrix
+#' @param w wage vector
+#' @param c household consumption vector
+#' @param d final demand vector
+#' @examples
+#' set.seed(200100)
+#' X <- matrix(rnorm(100), nrow = 10)
+#' w <- rnorm(10)
+#' c <- rnorm(10)
+#' d <- rnorm(10)
+#' augmented_input_requirement(X,w,c,d)
+#' @export
+augmented_input_requirement <- function(X, w, c, d) {
+    .Call('_inputoutput_augmented_input_requirement', PACKAGE = 'inputoutput', X, w, c, d)
+}
+
 #' Output allocation
 #' @param X transaction matrix
 #' @param d final demand vector
@@ -62,6 +79,55 @@ equilibrium_output <- function(L, d) {
     .Call('_inputoutput_equilibrium_output', PACKAGE = 'inputoutput', L, d)
 }
 
+#' Backward linkage
+#' @param A input requirement matrix
+#' @export
+backward_linkage <- function(A) {
+    .Call('_inputoutput_backward_linkage', PACKAGE = 'inputoutput', A)
+}
+
+#' Forward linkage
+#' @param A input requirement matrix
+#' @export
+forward_linkage <- function(A) {
+    .Call('_inputoutput_forward_linkage', PACKAGE = 'inputoutput', A)
+}
+
+#' Power of dispersion
+#' @param L Leontief inverse matrix
+#' @export
+power_dispersion <- function(L) {
+    .Call('_inputoutput_power_dispersion', PACKAGE = 'inputoutput', L)
+}
+
+#' Power of dispersion coefficient of variation
+#' @param L Leontief inverse matrix
+#' @export
+power_dispersion_cv <- function(L) {
+    .Call('_inputoutput_power_dispersion_cv', PACKAGE = 'inputoutput', L)
+}
+
+#' Sensitivity of dispersion coefficient of variation
+#' @param L Leontief inverse matrix
+#' @export
+sensitivity_dispersion <- function(L) {
+    .Call('_inputoutput_sensitivity_dispersion', PACKAGE = 'inputoutput', L)
+}
+
+#' Sensititivy of dispersion coefficient of variation
+#' @param L Leontief inverse matrix
+#' @export
+sensitivity_dispersion_cv <- function(L) {
+    .Call('_inputoutput_sensitivity_dispersion_cv', PACKAGE = 'inputoutput', L)
+}
+
+#' Multiplier product matrix
+#' @param L Leontief inverse matrix
+#' @export
+multiplier_product_matrix <- function(L) {
+    .Call('_inputoutput_multiplier_product_matrix', PACKAGE = 'inputoutput', L)
+}
+
 #' Output multiplier
 #' @param L Leontief inverse matrix
 #' @examples
@@ -106,40 +172,5 @@ employment_multiplier <- function(L, e) {
 #' @export
 input_multiplier <- function(G) {
     .Call('_inputoutput_input_multiplier', PACKAGE = 'inputoutput', G)
-}
-
-#' Backward linkage
-#' @param L Leontief inverse matrix
-#' @export
-backward_linkage <- function(L) {
-    .Call('_inputoutput_backward_linkage', PACKAGE = 'inputoutput', L)
-}
-
-#' Backward linkage coefficient of variation
-#' @param L Leontief inverse matrix
-#' @export
-backward_linkage_cv <- function(L) {
-    .Call('_inputoutput_backward_linkage_cv', PACKAGE = 'inputoutput', L)
-}
-
-#' Forward linkage
-#' @param L Leontief inverse matrix
-#' @export
-forward_linkage <- function(L) {
-    .Call('_inputoutput_forward_linkage', PACKAGE = 'inputoutput', L)
-}
-
-#' Forward linkage coefficient of variation
-#' @param L Leontief inverse matrix
-#' @export
-forward_linkage_cv <- function(L) {
-    .Call('_inputoutput_forward_linkage_cv', PACKAGE = 'inputoutput', L)
-}
-
-#' Multiplier product matrix
-#' @param L Leontief inverse matrix
-#' @export
-multiplier_product_matrix <- function(L) {
-    .Call('_inputoutput_multiplier_product_matrix', PACKAGE = 'inputoutput', L)
 }
 

@@ -4,10 +4,10 @@
 \alias{backward_linkage}
 \title{Backward linkage}
 \usage{
-backward_linkage(L)
+backward_linkage(A)
 }
 \arguments{
-\item{L}{Leontief inverse matrix}
+\item{A}{input requirement matrix}
 }
 \description{
 Backward linkage

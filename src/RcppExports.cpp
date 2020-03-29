@@ -18,6 +18,20 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// augmented_input_requirement
+arma::mat augmented_input_requirement(const arma::mat& X, const arma::vec& w, const arma::vec& c, const arma::vec& d);
+RcppExport SEXP _inputoutput_augmented_input_requirement(SEXP XSEXP, SEXP wSEXP, SEXP cSEXP, SEXP dSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< const arma::vec& >::type w(wSEXP);
+    Rcpp::traits::input_parameter< const arma::vec& >::type c(cSEXP);
+    Rcpp::traits::input_parameter< const arma::vec& >::type d(dSEXP);
+    rcpp_result_gen = Rcpp::wrap(augmented_input_requirement(X, w, c, d));
+    return rcpp_result_gen;
+END_RCPP
+}
 // output_allocation
 arma::mat output_allocation(const arma::mat& X, const arma::vec& d);
 RcppExport SEXP _inputoutput_output_allocation(SEXP XSEXP, SEXP dSEXP) {
@@ -61,6 +75,83 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type d(dSEXP);
     rcpp_result_gen = Rcpp::wrap(equilibrium_output(L, d));
+    return rcpp_result_gen;
+END_RCPP
+}
+// backward_linkage
+arma::mat backward_linkage(const arma::mat& A);
+RcppExport SEXP _inputoutput_backward_linkage(SEXP ASEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type A(ASEXP);
+    rcpp_result_gen = Rcpp::wrap(backward_linkage(A));
+    return rcpp_result_gen;
+END_RCPP
+}
+// forward_linkage
+arma::mat forward_linkage(const arma::mat& A);
+RcppExport SEXP _inputoutput_forward_linkage(SEXP ASEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type A(ASEXP);
+    rcpp_result_gen = Rcpp::wrap(forward_linkage(A));
+    return rcpp_result_gen;
+END_RCPP
+}
+// power_dispersion
+arma::mat power_dispersion(const arma::mat& L);
+RcppExport SEXP _inputoutput_power_dispersion(SEXP LSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
+    rcpp_result_gen = Rcpp::wrap(power_dispersion(L));
+    return rcpp_result_gen;
+END_RCPP
+}
+// power_dispersion_cv
+arma::mat power_dispersion_cv(const arma::mat& L);
+RcppExport SEXP _inputoutput_power_dispersion_cv(SEXP LSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
+    rcpp_result_gen = Rcpp::wrap(power_dispersion_cv(L));
+    return rcpp_result_gen;
+END_RCPP
+}
+// sensitivity_dispersion
+arma::mat sensitivity_dispersion(const arma::mat& L);
+RcppExport SEXP _inputoutput_sensitivity_dispersion(SEXP LSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
+    rcpp_result_gen = Rcpp::wrap(sensitivity_dispersion(L));
+    return rcpp_result_gen;
+END_RCPP
+}
+// sensitivity_dispersion_cv
+arma::mat sensitivity_dispersion_cv(const arma::mat& L);
+RcppExport SEXP _inputoutput_sensitivity_dispersion_cv(SEXP LSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
+    rcpp_result_gen = Rcpp::wrap(sensitivity_dispersion_cv(L));
+    return rcpp_result_gen;
+END_RCPP
+}
+// multiplier_product_matrix
+arma::mat multiplier_product_matrix(const arma::mat& L);
+RcppExport SEXP _inputoutput_multiplier_product_matrix(SEXP LSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
+    rcpp_result_gen = Rcpp::wrap(multiplier_product_matrix(L));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -122,78 +213,26 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// backward_linkage
-arma::mat backward_linkage(const arma::mat& L);
-RcppExport SEXP _inputoutput_backward_linkage(SEXP LSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
-    rcpp_result_gen = Rcpp::wrap(backward_linkage(L));
-    return rcpp_result_gen;
-END_RCPP
-}
-// backward_linkage_cv
-arma::mat backward_linkage_cv(const arma::mat& L);
-RcppExport SEXP _inputoutput_backward_linkage_cv(SEXP LSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
-    rcpp_result_gen = Rcpp::wrap(backward_linkage_cv(L));
-    return rcpp_result_gen;
-END_RCPP
-}
-// forward_linkage
-arma::mat forward_linkage(const arma::mat& L);
-RcppExport SEXP _inputoutput_forward_linkage(SEXP LSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
-    rcpp_result_gen = Rcpp::wrap(forward_linkage(L));
-    return rcpp_result_gen;
-END_RCPP
-}
-// forward_linkage_cv
-arma::mat forward_linkage_cv(const arma::mat& L);
-RcppExport SEXP _inputoutput_forward_linkage_cv(SEXP LSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
-    rcpp_result_gen = Rcpp::wrap(forward_linkage_cv(L));
-    return rcpp_result_gen;
-END_RCPP
-}
-// multiplier_product_matrix
-arma::mat multiplier_product_matrix(const arma::mat& L);
-RcppExport SEXP _inputoutput_multiplier_product_matrix(SEXP LSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
-    rcpp_result_gen = Rcpp::wrap(multiplier_product_matrix(L));
-    return rcpp_result_gen;
-END_RCPP
-}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_inputoutput_input_requirement", (DL_FUNC) &_inputoutput_input_requirement, 2},
+    {"_inputoutput_augmented_input_requirement", (DL_FUNC) &_inputoutput_augmented_input_requirement, 4},
     {"_inputoutput_output_allocation", (DL_FUNC) &_inputoutput_output_allocation, 2},
     {"_inputoutput_leontief_inverse", (DL_FUNC) &_inputoutput_leontief_inverse, 1},
     {"_inputoutput_ghosh_inverse", (DL_FUNC) &_inputoutput_ghosh_inverse, 1},
     {"_inputoutput_equilibrium_output", (DL_FUNC) &_inputoutput_equilibrium_output, 2},
+    {"_inputoutput_backward_linkage", (DL_FUNC) &_inputoutput_backward_linkage, 1},
+    {"_inputoutput_forward_linkage", (DL_FUNC) &_inputoutput_forward_linkage, 1},
+    {"_inputoutput_power_dispersion", (DL_FUNC) &_inputoutput_power_dispersion, 1},
+    {"_inputoutput_power_dispersion_cv", (DL_FUNC) &_inputoutput_power_dispersion_cv, 1},
+    {"_inputoutput_sensitivity_dispersion", (DL_FUNC) &_inputoutput_sensitivity_dispersion, 1},
+    {"_inputoutput_sensitivity_dispersion_cv", (DL_FUNC) &_inputoutput_sensitivity_dispersion_cv, 1},
+    {"_inputoutput_multiplier_product_matrix", (DL_FUNC) &_inputoutput_multiplier_product_matrix, 1},
     {"_inputoutput_output_multiplier", (DL_FUNC) &_inputoutput_output_multiplier, 1},
     {"_inputoutput_household_income_multiplier", (DL_FUNC) &_inputoutput_household_income_multiplier, 2},
     {"_inputoutput_income_multiplier", (DL_FUNC) &_inputoutput_income_multiplier, 2},
     {"_inputoutput_employment_multiplier", (DL_FUNC) &_inputoutput_employment_multiplier, 2},
     {"_inputoutput_input_multiplier", (DL_FUNC) &_inputoutput_input_multiplier, 1},
-    {"_inputoutput_backward_linkage", (DL_FUNC) &_inputoutput_backward_linkage, 1},
-    {"_inputoutput_backward_linkage_cv", (DL_FUNC) &_inputoutput_backward_linkage_cv, 1},
-    {"_inputoutput_forward_linkage", (DL_FUNC) &_inputoutput_forward_linkage, 1},
-    {"_inputoutput_forward_linkage_cv", (DL_FUNC) &_inputoutput_forward_linkage_cv, 1},
-    {"_inputoutput_multiplier_product_matrix", (DL_FUNC) &_inputoutput_multiplier_product_matrix, 1},
     {NULL, NULL, 0}
 };
 
