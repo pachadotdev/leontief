@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{leontief_inverse}
 \alias{leontief_inverse}
-\title{Leontief inverse matrix}
+\title{Leontief inverse}
 \usage{
 leontief_inverse(A)
 }
@@ -10,7 +10,7 @@ leontief_inverse(A)
 \item{A}{input requirement matrix}
 }
 \description{
-Leontief inverse matrix
+Leontief inverse
 }
 \examples{
 set.seed(200100)

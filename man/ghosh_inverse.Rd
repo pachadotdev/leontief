@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{ghosh_inverse}
 \alias{ghosh_inverse}
-\title{Ghosh inverse matrix}
+\title{Ghosh inverse}
 \usage{
 ghosh_inverse(B)
 }
@@ -10,7 +10,7 @@ ghosh_inverse(B)
 \item{B}{output allocation matrix}
 }
 \description{
-Ghosh inverse matrix
+Ghosh inverse
 }
 \examples{
 set.seed(200100)

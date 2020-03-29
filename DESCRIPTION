@@ -12,7 +12,7 @@ Authors@R: c(
       person(family = "Central Bank of Chile",
         role = "dtc")
     )
-Description: Input-Output Analysis in R inspired after the PyIO Python library.
+Description: Input-Output Analysis (Macroeconomics) in R.
 License: GPL-3
 Imports: 
     Rcpp

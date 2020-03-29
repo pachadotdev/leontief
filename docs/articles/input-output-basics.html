@@ -87,10 +87,9 @@
 <h2 class="hasAnchor">
 <a href="#common-variables" class="anchor"></a>Common variables</h2>
 <p>Let <code>X</code> be the input-output matrix and <code>d</code> the total final demand vector.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">M &lt;-<span class="st"> </span>demand_matrix_12x12</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">aggregated_demands &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"intermediate_total_demand"</span>,<span class="st">"total_final_demand"</span>)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">X &lt;-<span class="st"> </span>M[ ,<span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(M) <span class="op">%in%</span><span class="st"> </span>aggregated_demands]</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">d &lt;-<span class="st"> </span>M[,<span class="st">"total_final_demand"</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">X &lt;-<span class="st"> </span>transaction_matrix</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">d &lt;-<span class="st"> </span>wage_demand_matrix[, <span class="st">"final_total_demand"</span>]</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">w &lt;-<span class="st"> </span>wage_demand_matrix[, <span class="st">"wage"</span>]</a></code></pre></div>
 </div>
 <div id="leontief-approach" class="section level2">
 <h2 class="hasAnchor">
@@ -99,12 +98,52 @@
 <h3 class="hasAnchor">
 <a href="#input-requirement-matrix" class="anchor"></a>Input requirement matrix</h3>
 <p>Let <code>A</code> be the direct coefficients matrix.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw"><a href="../reference/input_requirement_matrix.html">input_requirement_matrix</a></span>(X, d)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw"><a href="../reference/input_requirement.html">input_requirement</a></span>(X, d)</a></code></pre></div>
 </div>
 <div id="leontief-inverse-matrix" class="section level3">
 <h3 class="hasAnchor">
 <a href="#leontief-inverse-matrix" class="anchor"></a>Leontief inverse matrix</h3>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">L &lt;-<span class="st"> </span><span class="kw"><a href="../reference/leontief_inverse.html">leontief_inverse</a></span>(A)</a></code></pre></div>
+</div>
+<div id="output-multiplier" class="section level3">
+<h3 class="hasAnchor">
+<a href="#output-multiplier" class="anchor"></a>Output multiplier</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../reference/output_multiplier.html">output_multiplier</a></span>(L)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt;           [,1]</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt;  [1,] 1.890084</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt;  [2,] 1.565594</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt;  [3,] 1.884156</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt;  [4,] 1.872177</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt;  [5,] 1.861470</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt;  [6,] 1.750310</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt;  [7,] 1.644662</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt;  [8,] 1.434695</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt;  [9,] 1.371444</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; [10,] 1.441042</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; [11,] 1.395462</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; [12,] 1.356191</span></a></code></pre></div>
+</div>
+<div id="household-income-multiplier" class="section level3">
+<h3 class="hasAnchor">
+<a href="#household-income-multiplier" class="anchor"></a>Household income multiplier</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">h &lt;-<span class="st"> </span><span class="kw"><a href="../reference/household_income_multiplier.html">household_income_multiplier</a></span>(L,w)</a></code></pre></div>
+</div>
+<div id="income-multiplier" class="section level3">
+<h3 class="hasAnchor">
+<a href="#income-multiplier" class="anchor"></a>Income multiplier</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/income_multiplier.html">income_multiplier</a></span>(L,w)</a></code></pre></div>
+</div>
+<div id="backward-linkage" class="section level3">
+<h3 class="hasAnchor">
+<a href="#backward-linkage" class="anchor"></a>Backward linkage</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">bl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/backward_linkage.html">backward_linkage</a></span>(L)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">bl_cv &lt;-<span class="st"> </span><span class="kw"><a href="../reference/backward_linkage_cv.html">backward_linkage_cv</a></span>(L)</a></code></pre></div>
+</div>
+<div id="forward-linkage" class="section level3">
+<h3 class="hasAnchor">
+<a href="#forward-linkage" class="anchor"></a>Forward linkage</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">bl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/forward_linkage.html">forward_linkage</a></span>(L)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">bl_cv &lt;-<span class="st"> </span><span class="kw"><a href="../reference/forward_linkage_cv.html">forward_linkage_cv</a></span>(L)</a></code></pre></div>
 </div>
 </div>
 <div id="ghosh-approach" class="section level2">
@@ -114,12 +153,30 @@
 <h3 class="hasAnchor">
 <a href="#output-allocation-matrix" class="anchor"></a>Output allocation matrix</h3>
 <p>Let <code>B</code> be the output allocation matrix.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">B &lt;-<span class="st"> </span><span class="kw"><a href="../reference/output_allocation_matrix.html">output_allocation_matrix</a></span>(X, d)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">B &lt;-<span class="st"> </span><span class="kw"><a href="../reference/output_allocation.html">output_allocation</a></span>(X, d)</a></code></pre></div>
 </div>
 <div id="ghosh-inverse-matrix" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ghosh-inverse-matrix" class="anchor"></a>Ghosh inverse matrix</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">G &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ghosh_inverse.html">ghosh_inverse</a></span>(A)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">G &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ghosh_inverse.html">ghosh_inverse</a></span>(A)</a></code></pre></div>
+</div>
+<div id="input-multiplier" class="section level3">
+<h3 class="hasAnchor">
+<a href="#input-multiplier" class="anchor"></a>Input multiplier</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="../reference/input_multiplier.html">input_multiplier</a></span>(G)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#&gt;           [,1]</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#&gt;  [1,] 1.890084</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt;  [2,] 1.565594</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt;  [3,] 1.884156</span></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt;  [4,] 1.872177</span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt;  [5,] 1.861470</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt;  [6,] 1.750310</span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#&gt;  [7,] 1.644662</span></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt;  [8,] 1.434695</span></a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co">#&gt;  [9,] 1.371444</span></a>
+<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="co">#&gt; [10,] 1.441042</span></a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="co">#&gt; [11,] 1.395462</span></a>
+<a class="sourceLine" id="cb12-14" data-line-number="14"><span class="co">#&gt; [12,] 1.356191</span></a></code></pre></div>
 </div>
 </div>
   </div>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Leontief inverse — leontief_inverse • inputoutput</title>
+<title>Income multiplier — income_multiplier • inputoutput</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Leontief inverse — leontief_inverse" />
-<meta property="og:description" content="Leontief inverse" />
+<meta property="og:title" content="Income multiplier — income_multiplier" />
+<meta property="og:description" content="Income multiplier" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,58 +112,36 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Leontief inverse</h1>
+    <h1>Income multiplier</h1>
     
-    <div class="hidden name"><code>leontief_inverse.Rd</code></div>
+    <div class="hidden name"><code>income_multiplier.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Leontief inverse</p>
+    <p>Income multiplier</p>
     </div>
 
-    <pre class="usage"><span class='fu'>leontief_inverse</span>(<span class='no'>A</span>)</pre>
+    <pre class="usage"><span class='fu'>income_multiplier</span>(<span class='no'>L</span>, <span class='no'>w</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>A</th>
-      <td><p>input requirement matrix</p></td>
+      <th>L</th>
+      <td><p>Leontief inverse matrix</p></td>
+    </tr>
+    <tr>
+      <th>w</th>
+      <td><p>wage vector</p></td>
     </tr>
     </table>
 
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>200100</span>)
-<span class='no'>A</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>100</span>), <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>10</span>)
-<span class='fu'>leontief_inverse</span>(<span class='no'>A</span>)</div><div class='output co'>#&gt;              [,1]        [,2]        [,3]        [,4]        [,5]        [,6]
-#&gt;  [1,]  0.16608344 -0.28552763 -0.11104490 -0.50488417 -0.08687074  0.11265454
-#&gt;  [2,]  0.36756775  0.06653501 -0.06070046  0.34561769  0.05996698 -0.28137088
-#&gt;  [3,] -0.67278421  0.45534960  0.01140609 -0.73657367  0.03216514  0.81261548
-#&gt;  [4,]  0.04008993  0.20036738  0.06704616  0.57037921 -0.08970220 -0.33174426
-#&gt;  [5,]  0.40439215  0.19967879  0.52353527  0.41793607  0.34923580  0.07674034
-#&gt;  [6,] -0.66825707  0.35163553  0.11844334 -1.45109077 -0.32173316  1.50304860
-#&gt;  [7,]  0.02068690 -0.19757168 -0.07903157  0.66213214  0.21077697 -0.54158586
-#&gt;  [8,] -0.67174598  0.39799978 -0.02850860 -0.47377786  0.12924743  0.55104416
-#&gt;  [9,]  0.21939357  0.06789227  0.33336164 -0.02410646  0.14913726  0.23542283
-#&gt; [10,]  0.48970149  0.14127608  0.39854292  1.61721106  0.29249859 -1.47522272
-#&gt;              [,7]        [,8]        [,9]       [,10]
-#&gt;  [1,]  0.53149615  0.21227308  0.02059626 -0.66533484
-#&gt;  [2,]  0.08942785 -0.08359409  0.36053774  0.21396691
-#&gt;  [3,] -0.15559372  0.04486814 -0.90431298 -0.62004311
-#&gt;  [4,] -0.20175890 -0.08302524  0.13543948  0.66402784
-#&gt;  [5,] -0.02253168 -0.17898180  0.04512023  0.44096318
-#&gt;  [6,] -0.07932259 -0.03029504 -1.19260699 -0.80329579
-#&gt;  [7,]  0.08243197 -0.05306084  0.47680473  0.53797869
-#&gt;  [8,] -0.40676662  0.13993726 -0.84047462 -0.03028693
-#&gt;  [9,]  0.22344549  0.14009254  0.24730262 -0.21395448
-#&gt; [10,] -0.29024271 -0.23800269  1.24765274  1.54390019</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

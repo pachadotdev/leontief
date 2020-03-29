@@ -7,8 +7,8 @@
 [![Codecov test coverage](https://codecov.io/gh/pachamaltese/inputoutput/branch/master/graph/badge.svg)](https://codecov.io/gh/pachamaltese/inputoutput?branch=master)
 <!-- badges: end -->
 
-The goal of inputoutput is to provide functions for Input-Output (Macroeconomics)
-analysis.
+The goal of inputoutput is to provide functions for Input-Output analysis
+(Macroeconomics).
 
 ## Installation
 

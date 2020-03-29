@@ -6,27 +6,27 @@
 
 using namespace Rcpp;
 
-// input_requirement_matrix
-arma::mat input_requirement_matrix(const arma::mat& X, const arma::vec& d);
-RcppExport SEXP _inputoutput_input_requirement_matrix(SEXP XSEXP, SEXP dSEXP) {
+// input_requirement
+arma::mat input_requirement(const arma::mat& X, const arma::vec& d);
+RcppExport SEXP _inputoutput_input_requirement(SEXP XSEXP, SEXP dSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type d(dSEXP);
-    rcpp_result_gen = Rcpp::wrap(input_requirement_matrix(X, d));
+    rcpp_result_gen = Rcpp::wrap(input_requirement(X, d));
     return rcpp_result_gen;
 END_RCPP
 }
-// output_allocation_matrix
-arma::mat output_allocation_matrix(const arma::mat& X, const arma::vec& d);
-RcppExport SEXP _inputoutput_output_allocation_matrix(SEXP XSEXP, SEXP dSEXP) {
+// output_allocation
+arma::mat output_allocation(const arma::mat& X, const arma::vec& d);
+RcppExport SEXP _inputoutput_output_allocation(SEXP XSEXP, SEXP dSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type d(dSEXP);
-    rcpp_result_gen = Rcpp::wrap(output_allocation_matrix(X, d));
+    rcpp_result_gen = Rcpp::wrap(output_allocation(X, d));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -52,12 +52,148 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// equilibrium_output
+arma::mat equilibrium_output(const arma::mat& L, const arma::vec& d);
+RcppExport SEXP _inputoutput_equilibrium_output(SEXP LSEXP, SEXP dSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
+    Rcpp::traits::input_parameter< const arma::vec& >::type d(dSEXP);
+    rcpp_result_gen = Rcpp::wrap(equilibrium_output(L, d));
+    return rcpp_result_gen;
+END_RCPP
+}
+// output_multiplier
+arma::mat output_multiplier(const arma::mat& L);
+RcppExport SEXP _inputoutput_output_multiplier(SEXP LSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
+    rcpp_result_gen = Rcpp::wrap(output_multiplier(L));
+    return rcpp_result_gen;
+END_RCPP
+}
+// household_income_multiplier
+arma::mat household_income_multiplier(const arma::mat& L, const arma::vec& w);
+RcppExport SEXP _inputoutput_household_income_multiplier(SEXP LSEXP, SEXP wSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
+    Rcpp::traits::input_parameter< const arma::vec& >::type w(wSEXP);
+    rcpp_result_gen = Rcpp::wrap(household_income_multiplier(L, w));
+    return rcpp_result_gen;
+END_RCPP
+}
+// income_multiplier
+arma::mat income_multiplier(const arma::mat& L, const arma::vec& w);
+RcppExport SEXP _inputoutput_income_multiplier(SEXP LSEXP, SEXP wSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
+    Rcpp::traits::input_parameter< const arma::vec& >::type w(wSEXP);
+    rcpp_result_gen = Rcpp::wrap(income_multiplier(L, w));
+    return rcpp_result_gen;
+END_RCPP
+}
+// employment_multiplier
+arma::mat employment_multiplier(const arma::mat& L, const arma::vec& e);
+RcppExport SEXP _inputoutput_employment_multiplier(SEXP LSEXP, SEXP eSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
+    Rcpp::traits::input_parameter< const arma::vec& >::type e(eSEXP);
+    rcpp_result_gen = Rcpp::wrap(employment_multiplier(L, e));
+    return rcpp_result_gen;
+END_RCPP
+}
+// input_multiplier
+arma::mat input_multiplier(const arma::mat& G);
+RcppExport SEXP _inputoutput_input_multiplier(SEXP GSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type G(GSEXP);
+    rcpp_result_gen = Rcpp::wrap(input_multiplier(G));
+    return rcpp_result_gen;
+END_RCPP
+}
+// backward_linkage
+arma::mat backward_linkage(const arma::mat& L);
+RcppExport SEXP _inputoutput_backward_linkage(SEXP LSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
+    rcpp_result_gen = Rcpp::wrap(backward_linkage(L));
+    return rcpp_result_gen;
+END_RCPP
+}
+// backward_linkage_cv
+arma::mat backward_linkage_cv(const arma::mat& L);
+RcppExport SEXP _inputoutput_backward_linkage_cv(SEXP LSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
+    rcpp_result_gen = Rcpp::wrap(backward_linkage_cv(L));
+    return rcpp_result_gen;
+END_RCPP
+}
+// forward_linkage
+arma::mat forward_linkage(const arma::mat& L);
+RcppExport SEXP _inputoutput_forward_linkage(SEXP LSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
+    rcpp_result_gen = Rcpp::wrap(forward_linkage(L));
+    return rcpp_result_gen;
+END_RCPP
+}
+// forward_linkage_cv
+arma::mat forward_linkage_cv(const arma::mat& L);
+RcppExport SEXP _inputoutput_forward_linkage_cv(SEXP LSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
+    rcpp_result_gen = Rcpp::wrap(forward_linkage_cv(L));
+    return rcpp_result_gen;
+END_RCPP
+}
+// multiplier_product_matrix
+arma::mat multiplier_product_matrix(const arma::mat& L);
+RcppExport SEXP _inputoutput_multiplier_product_matrix(SEXP LSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
+    rcpp_result_gen = Rcpp::wrap(multiplier_product_matrix(L));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_inputoutput_input_requirement_matrix", (DL_FUNC) &_inputoutput_input_requirement_matrix, 2},
-    {"_inputoutput_output_allocation_matrix", (DL_FUNC) &_inputoutput_output_allocation_matrix, 2},
+    {"_inputoutput_input_requirement", (DL_FUNC) &_inputoutput_input_requirement, 2},
+    {"_inputoutput_output_allocation", (DL_FUNC) &_inputoutput_output_allocation, 2},
     {"_inputoutput_leontief_inverse", (DL_FUNC) &_inputoutput_leontief_inverse, 1},
     {"_inputoutput_ghosh_inverse", (DL_FUNC) &_inputoutput_ghosh_inverse, 1},
+    {"_inputoutput_equilibrium_output", (DL_FUNC) &_inputoutput_equilibrium_output, 2},
+    {"_inputoutput_output_multiplier", (DL_FUNC) &_inputoutput_output_multiplier, 1},
+    {"_inputoutput_household_income_multiplier", (DL_FUNC) &_inputoutput_household_income_multiplier, 2},
+    {"_inputoutput_income_multiplier", (DL_FUNC) &_inputoutput_income_multiplier, 2},
+    {"_inputoutput_employment_multiplier", (DL_FUNC) &_inputoutput_employment_multiplier, 2},
+    {"_inputoutput_input_multiplier", (DL_FUNC) &_inputoutput_input_multiplier, 1},
+    {"_inputoutput_backward_linkage", (DL_FUNC) &_inputoutput_backward_linkage, 1},
+    {"_inputoutput_backward_linkage_cv", (DL_FUNC) &_inputoutput_backward_linkage_cv, 1},
+    {"_inputoutput_forward_linkage", (DL_FUNC) &_inputoutput_forward_linkage, 1},
+    {"_inputoutput_forward_linkage_cv", (DL_FUNC) &_inputoutput_forward_linkage_cv, 1},
+    {"_inputoutput_multiplier_product_matrix", (DL_FUNC) &_inputoutput_multiplier_product_matrix, 1},
     {NULL, NULL, 0}
 };
 

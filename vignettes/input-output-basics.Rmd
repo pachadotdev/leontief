@@ -23,10 +23,9 @@ library(inputoutput)
 Let `X` be the input-output matrix and `d` the total final demand vector.
 
 ```{r}
-M <- demand_matrix_12x12
-aggregated_demands <- c("intermediate_total_demand","total_final_demand")
-X <- M[ ,!colnames(M) %in% aggregated_demands]
-d <- M[,"total_final_demand"]
+X <- transaction_matrix
+d <- wage_demand_matrix[, "final_total_demand"]
+w <- wage_demand_matrix[, "wage"]
 ```
 
 ## Leontief approach
@@ -36,13 +35,45 @@ d <- M[,"total_final_demand"]
 Let `A` be the direct coefficients matrix.
 
 ```{r}
-A <- input_requirement_matrix(X, d)
+A <- input_requirement(X, d)
 ```
 
 ### Leontief inverse matrix
 
 ```{r}
 L <- leontief_inverse(A)
+```
+
+### Output multiplier
+
+```{r}
+output_multiplier(L)
+```
+
+### Household income multiplier
+
+```{r}
+h <- household_income_multiplier(L,w)
+```
+
+### Income multiplier
+
+```{r}
+i <- income_multiplier(L,w)
+```
+
+### Backward linkage
+
+```{r}
+bl <- backward_linkage(L)
+bl_cv <- backward_linkage_cv(L)
+```
+
+### Forward linkage
+
+```{r}
+bl <- forward_linkage(L)
+bl_cv <- forward_linkage_cv(L)
 ```
 
 ## Ghosh approach
@@ -52,11 +83,17 @@ L <- leontief_inverse(A)
 Let `B` be the output allocation matrix.
 
 ```{r}
-B <- output_allocation_matrix(X, d)
+B <- output_allocation(X, d)
 ```
 
 ### Ghosh inverse matrix
 
 ```{r}
 G <- ghosh_inverse(A)
+```
+
+### Input multiplier
+
+```{r}
+input_multiplier(G)
 ```

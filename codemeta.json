@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "inputoutput",
-  "description": "Input-Output Analysis in R inspired after the PyIO Python library.",
+  "description": "Input-Output Analysis (Macroeconomics) in R.",
   "name": "inputoutput: Input-Output Analysis",
   "codeRepository": "https://pachamaltese.github.io/inputoutput",
   "issueTracker": "https://github.com/pachamaltese/inputoutput/issues",
@@ -126,7 +126,7 @@
       "version": ">= 3.2"
     }
   ],
-  "fileSize": "46.346KB",
+  "fileSize": "14.802KB",
   "developmentStatus": "https://www.tidyverse.org/lifecycle/#maturing",
   "readme": "https://github.com/pachamaltese/inputoutput/blob/master/README.md",
   "contIntegration": "https://codecov.io/gh/pachamaltese/inputoutput?branch=master"
