@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Output allocation matrix — Output allocation matrix • inputoutput</title>
+<title>Output allocation matrix — output_allocation_matrix • inputoutput</title>
 
 
 <!-- jquery -->
@@ -35,9 +35,8 @@
 
 
 
-<meta property="og:title" content="Output allocation matrix — Output allocation matrix" />
-<meta property="og:description" content="Returns output allocation matrix after passing an input-output matrix
-  and a final demand vector as input." />
+<meta property="og:title" content="Output allocation matrix — output_allocation_matrix" />
+<meta property="og:description" content="Output allocation matrix" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -119,11 +118,10 @@
     </div>
 
     <div class="ref-description">
-    <p>Returns output allocation matrix after passing an input-output matrix
-  and a final demand vector as input.</p>
+    <p>Output allocation matrix</p>
     </div>
 
-    <pre class="usage"><span class='fu'>output_allocation_matrix</span>(<span class='no'>X</span>,<span class='no'>d</span>)</pre>
+    <pre class="usage"><span class='fu'>output_allocation_matrix</span>(<span class='no'>X</span>, <span class='no'>d</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,22 +136,12 @@
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code>output_allocation_matrix()</code> returns a matrix, when the X matrix is not a
-  square matrix or the d vector has a different number of elements than the
-  number of rows in X it returns an error.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>Suahasil Nazara &amp; Dong Guo &amp; Geoffrey J.D. Hewings &amp; Chokri Dridi, 2004. 
-  "PyIO: Input-Output Analysis with Python," Urban/Regional 0409002, University
-  of Illinois at Urbana-Champaign, USA.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>  <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>200100</span>)
-  <span class='no'>X</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>100</span>), <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>10</span>)
-  <span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>)
-  <span class='fu'>output_allocation_matrix</span>(<span class='no'>X</span>,<span class='no'>d</span>)</div><div class='output co'>#&gt;             [,1]        [,2]        [,3]       [,4]       [,5]        [,6]
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>200100</span>)
+<span class='no'>X</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>100</span>), <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+<span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>)
+<span class='fu'>output_allocation_matrix</span>(<span class='no'>X</span>,<span class='no'>d</span>)</div><div class='output co'>#&gt;             [,1]        [,2]        [,3]       [,4]       [,5]        [,6]
 #&gt;  [1,]  9.5375187 -11.9683156 11.08646581  0.8436806 -7.0802684  4.87195055
 #&gt;  [2,]  3.1180082   5.6481793  4.98604211  2.6497659 -2.0818643  1.02605614
 #&gt;  [3,] -1.1445265   5.0380340  0.75848651 -0.5240111 -1.2341034  0.05703522
@@ -180,13 +168,9 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#references">References</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
-    <h2>Author</h2>
-    <p>Mauricio Vargas</p>
   </div>
 </div>
 

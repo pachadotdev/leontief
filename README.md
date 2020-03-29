@@ -7,23 +7,30 @@
 [![Codecov test coverage](https://codecov.io/gh/pachamaltese/inputoutput/branch/master/graph/badge.svg)](https://codecov.io/gh/pachamaltese/inputoutput?branch=master)
 <!-- badges: end -->
 
-The goal of inputoutput is to ...
+The goal of inputoutput is to provide functions for Input-Output (Macroeconomics)
+analysis.
 
 ## Installation
 
-You can install the released version of inputoutput from [CRAN](https://CRAN.R-project.org) with:
-
+This package is not available from CRAN at the present time. It can be installed
+from GitHub by running:
 ``` r
-install.packages("inputoutput")
+source("https://install-github.me/pachamaltese/inputoutput")
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to obtain the input requirement matrix:
 
 ``` r
 library(inputoutput)
-## basic example code
+
+# use a real input-output matrix and final demand vector
+set.seed(200100)
+X <- matrix(rnorm(100), nrow = 10)
+d <- rnorm(10)
+
+input_requirement_matrix(X,d)
 ```
 
 ## Code of conduct

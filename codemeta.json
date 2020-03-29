@@ -1,5 +1,8 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "inputoutput",
   "description": "Input-Output Analysis in R inspired after the PyIO Python library.",
@@ -77,6 +80,30 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=covr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "roxygen2",
+      "name": "roxygen2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=roxygen2"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
     }
   ],
   "softwareRequirements": [
@@ -84,7 +111,6 @@
       "@type": "SoftwareApplication",
       "identifier": "Rcpp",
       "name": "Rcpp",
-      "version": ">= 1.0.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -100,6 +126,8 @@
       "version": ">= 3.2"
     }
   ],
-  "fileSize": "10.36KB",
-  "developmentStatus": "https://www.tidyverse.org/lifecycle/#maturing"
+  "fileSize": "46.346KB",
+  "developmentStatus": "https://www.tidyverse.org/lifecycle/#maturing",
+  "readme": "https://github.com/pachamaltese/inputoutput/blob/master/README.md",
+  "contIntegration": "https://codecov.io/gh/pachamaltese/inputoutput?branch=master"
 }
