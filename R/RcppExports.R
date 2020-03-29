@@ -139,14 +139,6 @@ output_multiplier <- function(L) {
     .Call('_inputoutput_output_multiplier', PACKAGE = 'inputoutput', L)
 }
 
-#' Household income multiplier
-#' @param L Leontief inverse matrix
-#' @param w wage vector
-#' @export
-household_income_multiplier <- function(L, w) {
-    .Call('_inputoutput_household_income_multiplier', PACKAGE = 'inputoutput', L, w)
-}
-
 #' Income multiplier
 #' @param L Leontief inverse matrix
 #' @param w wage vector

@@ -166,18 +166,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// household_income_multiplier
-arma::mat household_income_multiplier(const arma::mat& L, const arma::vec& w);
-RcppExport SEXP _inputoutput_household_income_multiplier(SEXP LSEXP, SEXP wSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type w(wSEXP);
-    rcpp_result_gen = Rcpp::wrap(household_income_multiplier(L, w));
-    return rcpp_result_gen;
-END_RCPP
-}
 // income_multiplier
 arma::mat income_multiplier(const arma::mat& L, const arma::vec& w);
 RcppExport SEXP _inputoutput_income_multiplier(SEXP LSEXP, SEXP wSEXP) {
@@ -229,7 +217,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_inputoutput_sensitivity_dispersion_cv", (DL_FUNC) &_inputoutput_sensitivity_dispersion_cv, 1},
     {"_inputoutput_multiplier_product_matrix", (DL_FUNC) &_inputoutput_multiplier_product_matrix, 1},
     {"_inputoutput_output_multiplier", (DL_FUNC) &_inputoutput_output_multiplier, 1},
-    {"_inputoutput_household_income_multiplier", (DL_FUNC) &_inputoutput_household_income_multiplier, 2},
     {"_inputoutput_income_multiplier", (DL_FUNC) &_inputoutput_income_multiplier, 2},
     {"_inputoutput_employment_multiplier", (DL_FUNC) &_inputoutput_employment_multiplier, 2},
     {"_inputoutput_input_multiplier", (DL_FUNC) &_inputoutput_input_multiplier, 1},

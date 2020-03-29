@@ -83,108 +83,333 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(inputoutput)</a></code></pre></div>
-<div id="references" class="section level2">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h2>
-<p>These examples are based on: &gt; Schuschny, Andrés Ricardo. <em>Tópicos sobre el modelo de insumo-producto: teoría y aplicaciones</em>. Cepal, 2005.</p>
-<p>The book is available from <a href="https://repositorio.cepal.org/bitstream/handle/11362/4737/S0501011_es.pdf?sequence=1">ECLAC</a> in spanish.</p>
-</div>
 <div id="common-variables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#common-variables" class="anchor"></a>Common variables</h2>
-<p>Let <code>X</code> be the input-output matrix and <code>d</code> the total final demand vector.</p>
+<p>Let <code>X</code> be the input-output matrix, <code>w</code> the wage vector, <code>c</code> the household consumption vector and <code>d</code> the total final demand vector.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">X &lt;-<span class="st"> </span>transaction_matrix</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">d &lt;-<span class="st"> </span>wage_demand_matrix[, <span class="st">"final_total_demand"</span>]</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">w &lt;-<span class="st"> </span>wage_demand_matrix[, <span class="st">"wage"</span>]</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">c &lt;-<span class="st"> </span>wage_demand_matrix[, <span class="st">"household_consumption"</span>]</a></code></pre></div>
+<a class="sourceLine" id="cb2-2" data-line-number="2">w &lt;-<span class="st"> </span>wage_demand_matrix[, <span class="st">"wage"</span>]</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">c &lt;-<span class="st"> </span>wage_demand_matrix[, <span class="st">"household_consumption"</span>]</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">d &lt;-<span class="st"> </span>wage_demand_matrix[, <span class="st">"final_total_demand"</span>]</a></code></pre></div>
 </div>
-<div id="leontief-approach" class="section level2">
+<div id="input-requirement-matrix" class="section level2">
 <h2 class="hasAnchor">
-<a href="#leontief-approach" class="anchor"></a>Leontief approach</h2>
-<div id="input-requirement-matrix" class="section level3">
-<h3 class="hasAnchor">
-<a href="#input-requirement-matrix" class="anchor"></a>Input requirement matrix</h3>
+<a href="#input-requirement-matrix" class="anchor"></a>Input requirement matrix</h2>
 <p>Let <code>A</code> be the direct coefficients matrix.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw"><a href="../reference/input_requirement.html">input_requirement</a></span>(X, d)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw"><a href="../reference/input_requirement.html">input_requirement</a></span>(X, d)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">A_aug &lt;-<span class="st"> </span><span class="kw"><a href="../reference/augmented_input_requirement.html">augmented_input_requirement</a></span>(X,w,c,d)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">A; A_aug</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;               [,1]         [,2]        [,3]        [,4]         [,5]</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt;  [1,] 0.1466015548 0.0001314420 0.125164349 0.002923139 0.0003490677</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;  [2,] 0.0076608226 0.0707243650 0.029795415 0.001802627 0.0046547280</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt;  [3,] 0.1852289751 0.0519203917 0.137392501 0.049994003 0.1935257808</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt;  [4,] 0.0070392900 0.0555184793 0.027904063 0.308370095 0.0043044188</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt;  [5,] 0.0020050901 0.0005945386 0.001017339 0.008775901 0.1231467958</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt;  [6,] 0.0489967050 0.0274093586 0.037447580 0.022759159 0.0533773392</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt;  [7,] 0.0364714516 0.0343741490 0.056869164 0.026793985 0.0190668558</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt;  [8,] 0.0283622917 0.0056393707 0.015277384 0.018156201 0.0281303425</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt;  [9,] 0.0032469697 0.0029427822 0.005022240 0.002343602 0.0030562511</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; [10,] 0.0287469491 0.0914280367 0.065225511 0.041083650 0.0560145210</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; [11,] 0.0006773588 0.0012639766 0.002620498 0.001079545 0.0009859695</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt; [12,] 0.0013504746 0.0011767989 0.001771130 0.001547624 0.0001231144</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt;              [,6]         [,7]         [,8]         [,9]        [,10]</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt;  [1,] 0.007474562 0.0001524211 0.0002914241 4.604195e-05 0.0009734819</span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt;  [2,] 0.001638961 0.0010216850 0.0016233456 3.501833e-04 0.0019841771</span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="co">#&gt;  [3,] 0.077262686 0.0613088499 0.0102574400 1.827514e-03 0.0259800359</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co">#&gt;  [4,] 0.013781893 0.0084102441 0.0052962491 5.800292e-03 0.0064552091</span></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="co">#&gt;  [5,] 0.008140584 0.0051286290 0.0016968108 1.292515e-01 0.0035307649</span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="co">#&gt;  [6,] 0.069603771 0.0569203993 0.0152958497 3.626024e-03 0.0310849523</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="co">#&gt;  [7,] 0.099191778 0.1435689995 0.0411733498 3.516072e-03 0.0438322508</span></a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="co">#&gt;  [8,] 0.035852636 0.0198488094 0.1086126465 3.930621e-02 0.0187327255</span></a>
+<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="co">#&gt;  [9,] 0.047509214 0.0154863167 0.0099372460 1.425089e-02 0.0235037341</span></a>
+<a class="sourceLine" id="cb3-28" data-line-number="28"><span class="co">#&gt; [10,] 0.094034482 0.0727851474 0.0901333895 1.854516e-02 0.1232168647</span></a>
+<a class="sourceLine" id="cb3-29" data-line-number="29"><span class="co">#&gt; [11,] 0.003592443 0.0053095570 0.0031322387 5.962728e-04 0.0029317124</span></a>
+<a class="sourceLine" id="cb3-30" data-line-number="30"><span class="co">#&gt; [12,] 0.003691157 0.0031004643 0.0007391033 2.109133e-04 0.0009058523</span></a>
+<a class="sourceLine" id="cb3-31" data-line-number="31"><span class="co">#&gt;              [,11]        [,12]</span></a>
+<a class="sourceLine" id="cb3-32" data-line-number="32"><span class="co">#&gt;  [1,] 0.0016846643 0.0018818795</span></a>
+<a class="sourceLine" id="cb3-33" data-line-number="33"><span class="co">#&gt;  [2,] 0.0008166602 0.0005716774</span></a>
+<a class="sourceLine" id="cb3-34" data-line-number="34"><span class="co">#&gt;  [3,] 0.0474832798 0.0269477738</span></a>
+<a class="sourceLine" id="cb3-35" data-line-number="35"><span class="co">#&gt;  [4,] 0.0139350146 0.0346062014</span></a>
+<a class="sourceLine" id="cb3-36" data-line-number="36"><span class="co">#&gt;  [5,] 0.0112099710 0.0277391389</span></a>
+<a class="sourceLine" id="cb3-37" data-line-number="37"><span class="co">#&gt;  [6,] 0.0398167533 0.0181290986</span></a>
+<a class="sourceLine" id="cb3-38" data-line-number="38"><span class="co">#&gt;  [7,] 0.0188588984 0.0372542051</span></a>
+<a class="sourceLine" id="cb3-39" data-line-number="39"><span class="co">#&gt;  [8,] 0.0091248869 0.0025029376</span></a>
+<a class="sourceLine" id="cb3-40" data-line-number="40"><span class="co">#&gt;  [9,] 0.0227240276 0.0086407841</span></a>
+<a class="sourceLine" id="cb3-41" data-line-number="41"><span class="co">#&gt; [10,] 0.0415016012 0.0471213967</span></a>
+<a class="sourceLine" id="cb3-42" data-line-number="42"><span class="co">#&gt; [11,] 0.0341959397 0.0028208037</span></a>
+<a class="sourceLine" id="cb3-43" data-line-number="43"><span class="co">#&gt; [12,] 0.0015396635 0.0031391133</span></a>
+<a class="sourceLine" id="cb3-44" data-line-number="44"><span class="co">#&gt;               [,1]         [,2]        [,3]        [,4]         [,5]</span></a>
+<a class="sourceLine" id="cb3-45" data-line-number="45"><span class="co">#&gt;  [1,] 0.1466015548 0.0001314420 0.125164349 0.002923139 0.0003490677</span></a>
+<a class="sourceLine" id="cb3-46" data-line-number="46"><span class="co">#&gt;  [2,] 0.0076608226 0.0707243650 0.029795415 0.001802627 0.0046547280</span></a>
+<a class="sourceLine" id="cb3-47" data-line-number="47"><span class="co">#&gt;  [3,] 0.1852289751 0.0519203917 0.137392501 0.049994003 0.1935257808</span></a>
+<a class="sourceLine" id="cb3-48" data-line-number="48"><span class="co">#&gt;  [4,] 0.0070392900 0.0555184793 0.027904063 0.308370095 0.0043044188</span></a>
+<a class="sourceLine" id="cb3-49" data-line-number="49"><span class="co">#&gt;  [5,] 0.0020050901 0.0005945386 0.001017339 0.008775901 0.1231467958</span></a>
+<a class="sourceLine" id="cb3-50" data-line-number="50"><span class="co">#&gt;  [6,] 0.0489967050 0.0274093586 0.037447580 0.022759159 0.0533773392</span></a>
+<a class="sourceLine" id="cb3-51" data-line-number="51"><span class="co">#&gt;  [7,] 0.0364714516 0.0343741490 0.056869164 0.026793985 0.0190668558</span></a>
+<a class="sourceLine" id="cb3-52" data-line-number="52"><span class="co">#&gt;  [8,] 0.0283622917 0.0056393707 0.015277384 0.018156201 0.0281303425</span></a>
+<a class="sourceLine" id="cb3-53" data-line-number="53"><span class="co">#&gt;  [9,] 0.0032469697 0.0029427822 0.005022240 0.002343602 0.0030562511</span></a>
+<a class="sourceLine" id="cb3-54" data-line-number="54"><span class="co">#&gt; [10,] 0.0287469491 0.0914280367 0.065225511 0.041083650 0.0560145210</span></a>
+<a class="sourceLine" id="cb3-55" data-line-number="55"><span class="co">#&gt; [11,] 0.0006773588 0.0012639766 0.002620498 0.001079545 0.0009859695</span></a>
+<a class="sourceLine" id="cb3-56" data-line-number="56"><span class="co">#&gt; [12,] 0.0013504746 0.0011767989 0.001771130 0.001547624 0.0001231144</span></a>
+<a class="sourceLine" id="cb3-57" data-line-number="57"><span class="co">#&gt; [13,] 0.1461685627 0.0903375747 0.103800183 0.064424426 0.2410012085</span></a>
+<a class="sourceLine" id="cb3-58" data-line-number="58"><span class="co">#&gt;              [,6]         [,7]         [,8]         [,9]        [,10]</span></a>
+<a class="sourceLine" id="cb3-59" data-line-number="59"><span class="co">#&gt;  [1,] 0.007474562 0.0001524211 0.0002914241 4.604195e-05 0.0009734819</span></a>
+<a class="sourceLine" id="cb3-60" data-line-number="60"><span class="co">#&gt;  [2,] 0.001638961 0.0010216850 0.0016233456 3.501833e-04 0.0019841771</span></a>
+<a class="sourceLine" id="cb3-61" data-line-number="61"><span class="co">#&gt;  [3,] 0.077262686 0.0613088499 0.0102574400 1.827514e-03 0.0259800359</span></a>
+<a class="sourceLine" id="cb3-62" data-line-number="62"><span class="co">#&gt;  [4,] 0.013781893 0.0084102441 0.0052962491 5.800292e-03 0.0064552091</span></a>
+<a class="sourceLine" id="cb3-63" data-line-number="63"><span class="co">#&gt;  [5,] 0.008140584 0.0051286290 0.0016968108 1.292515e-01 0.0035307649</span></a>
+<a class="sourceLine" id="cb3-64" data-line-number="64"><span class="co">#&gt;  [6,] 0.069603771 0.0569203993 0.0152958497 3.626024e-03 0.0310849523</span></a>
+<a class="sourceLine" id="cb3-65" data-line-number="65"><span class="co">#&gt;  [7,] 0.099191778 0.1435689995 0.0411733498 3.516072e-03 0.0438322508</span></a>
+<a class="sourceLine" id="cb3-66" data-line-number="66"><span class="co">#&gt;  [8,] 0.035852636 0.0198488094 0.1086126465 3.930621e-02 0.0187327255</span></a>
+<a class="sourceLine" id="cb3-67" data-line-number="67"><span class="co">#&gt;  [9,] 0.047509214 0.0154863167 0.0099372460 1.425089e-02 0.0235037341</span></a>
+<a class="sourceLine" id="cb3-68" data-line-number="68"><span class="co">#&gt; [10,] 0.094034482 0.0727851474 0.0901333895 1.854516e-02 0.1232168647</span></a>
+<a class="sourceLine" id="cb3-69" data-line-number="69"><span class="co">#&gt; [11,] 0.003592443 0.0053095570 0.0031322387 5.962728e-04 0.0029317124</span></a>
+<a class="sourceLine" id="cb3-70" data-line-number="70"><span class="co">#&gt; [12,] 0.003691157 0.0031004643 0.0007391033 2.109133e-04 0.0009058523</span></a>
+<a class="sourceLine" id="cb3-71" data-line-number="71"><span class="co">#&gt; [13,] 0.250740562 0.1544187678 0.2547071672 2.996022e-02 0.2987209697</span></a>
+<a class="sourceLine" id="cb3-72" data-line-number="72"><span class="co">#&gt;              [,11]        [,12]        [,13]</span></a>
+<a class="sourceLine" id="cb3-73" data-line-number="73"><span class="co">#&gt;  [1,] 0.0016846643 0.0018818795 0.1100864902</span></a>
+<a class="sourceLine" id="cb3-74" data-line-number="74"><span class="co">#&gt;  [2,] 0.0008166602 0.0005716774 0.0005511886</span></a>
+<a class="sourceLine" id="cb3-75" data-line-number="75"><span class="co">#&gt;  [3,] 0.0474832798 0.0269477738 0.2611390692</span></a>
+<a class="sourceLine" id="cb3-76" data-line-number="76"><span class="co">#&gt;  [4,] 0.0139350146 0.0346062014 0.2100932095</span></a>
+<a class="sourceLine" id="cb3-77" data-line-number="77"><span class="co">#&gt;  [5,] 0.0112099710 0.0277391389 0.0005215621</span></a>
+<a class="sourceLine" id="cb3-78" data-line-number="78"><span class="co">#&gt;  [6,] 0.0398167533 0.0181290986 0.5224880497</span></a>
+<a class="sourceLine" id="cb3-79" data-line-number="79"><span class="co">#&gt;  [7,] 0.0188588984 0.0372542051 0.3113885063</span></a>
+<a class="sourceLine" id="cb3-80" data-line-number="80"><span class="co">#&gt;  [8,] 0.0091248869 0.0025029376 0.4380427920</span></a>
+<a class="sourceLine" id="cb3-81" data-line-number="81"><span class="co">#&gt;  [9,] 0.0227240276 0.0086407841 0.6989701426</span></a>
+<a class="sourceLine" id="cb3-82" data-line-number="82"><span class="co">#&gt; [10,] 0.0415016012 0.0471213967 0.0514835506</span></a>
+<a class="sourceLine" id="cb3-83" data-line-number="83"><span class="co">#&gt; [11,] 0.0341959397 0.0028208037 0.4507707549</span></a>
+<a class="sourceLine" id="cb3-84" data-line-number="84"><span class="co">#&gt; [12,] 0.0015396635 0.0031391133 0.0341791718</span></a>
+<a class="sourceLine" id="cb3-85" data-line-number="85"><span class="co">#&gt; [13,] 0.5539198881 0.5405668828 0.0000000000</span></a></code></pre></div>
 </div>
-<div id="leontief-inverse-matrix" class="section level3">
-<h3 class="hasAnchor">
-<a href="#leontief-inverse-matrix" class="anchor"></a>Leontief inverse matrix</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">L &lt;-<span class="st"> </span><span class="kw"><a href="../reference/leontief_inverse.html">leontief_inverse</a></span>(A)</a></code></pre></div>
+<div id="output-allocation-matrix" class="section level2">
+<h2 class="hasAnchor">
+<a href="#output-allocation-matrix" class="anchor"></a>Output allocation matrix</h2>
+<p>Let <code>B</code> be the output allocation matrix.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">B &lt;-<span class="st"> </span><span class="kw"><a href="../reference/output_allocation.html">output_allocation</a></span>(X, d)</a></code></pre></div>
 </div>
+<div id="leontief-inverse-matrix" class="section level2">
+<h2 class="hasAnchor">
+<a href="#leontief-inverse-matrix" class="anchor"></a>Leontief inverse matrix</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">L &lt;-<span class="st"> </span><span class="kw"><a href="../reference/leontief_inverse.html">leontief_inverse</a></span>(A); L</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt;              [,1]        [,2]        [,3]        [,4]        [,5]        [,6]</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt;  [1,] 1.214302982 0.014020397 0.180661214 0.021126698 0.043447288 0.028830150</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt;  [2,] 0.019717917 1.079744323 0.041501309 0.006922434 0.015894271 0.007087849</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt;  [3,] 0.282985565 0.088136419 1.224611735 0.106032654 0.285884541 0.128393842</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt;  [4,] 0.029761640 0.093833104 0.059288587 1.454302942 0.024746923 0.032662734</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt;  [5,] 0.007375702 0.004925698 0.006879379 0.017699111 1.145101464 0.021538776</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt;  [6,] 0.086578339 0.047817187 0.073756215 0.050265413 0.089720993 1.099559968</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt;  [7,] 0.089664964 0.066442255 0.109795364 0.066842432 0.066913837 0.150079501</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt;  [8,] 0.052418989 0.017654165 0.037249743 0.038694120 0.051295735 0.058027932</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt;  [9,] 0.013883994 0.010839215 0.015928069 0.010341310 0.014089721 0.060668143</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; [10,] 0.087496116 0.137254837 0.126175303 0.094014331 0.119647056 0.152335752</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; [11,] 0.002953807 0.002801901 0.004978355 0.002935673 0.003267736 0.006054275</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; [12,] 0.002943557 0.002124655 0.003330336 0.003000028 0.001460516 0.005070761</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt;              [,7]        [,8]         [,9]       [,10]       [,11]       [,12]</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt;  [1,] 0.016702237 0.005046496 0.0067697250 0.009267903 0.013958384 0.010823998</span></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt;  [2,] 0.005445153 0.003398141 0.0028549165 0.004499131 0.003968160 0.003050492</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt;  [3,] 0.105530280 0.028516180 0.0434205498 0.050645401 0.076532039 0.054662698</span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt;  [4,] 0.023221401 0.013078856 0.0129988514 0.015904243 0.027317700 0.055324158</span></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt;  [5,] 0.012986479 0.006200785 0.1508571714 0.010654778 0.019165615 0.035439410</span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt;  [6,] 0.084997876 0.029480763 0.0186789898 0.047702693 0.055394305 0.032247160</span></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt;  [7,] 1.195053961 0.067335433 0.0182797746 0.071455580 0.041104517 0.058569729</span></a>
+<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt;  [8,] 0.037185190 1.129192298 0.0530051391 0.031232702 0.019485398 0.011157814</span></a>
+<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt;  [9,] 0.027129719 0.017282857 1.0180298209 0.031924764 0.029670057 0.013791977</span></a>
+<a class="sourceLine" id="cb5-25" data-line-number="25"><span class="co">#&gt; [10,] 0.124208280 0.129142144 0.0445950803 1.161728953 0.070230112 0.073484285</span></a>
+<a class="sourceLine" id="cb5-26" data-line-number="26"><span class="co">#&gt; [11,] 0.007757780 0.004654950 0.0014022064 0.004400919 1.036412650 0.003899223</span></a>
+<a class="sourceLine" id="cb5-27" data-line-number="27"><span class="co">#&gt; [12,] 0.004443986 0.001366589 0.0005518986 0.001625109 0.002222599 1.003740208</span></a></code></pre></div>
+</div>
+<div id="ghosh-inverse-matrix" class="section level2">
+<h2 class="hasAnchor">
+<a href="#ghosh-inverse-matrix" class="anchor"></a>Ghosh inverse matrix</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">G &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ghosh_inverse.html">ghosh_inverse</a></span>(A)</a></code></pre></div>
+</div>
+<div id="multipliers" class="section level2">
+<h2 class="hasAnchor">
+<a href="#multipliers" class="anchor"></a>Multipliers</h2>
 <div id="output-multiplier" class="section level3">
 <h3 class="hasAnchor">
 <a href="#output-multiplier" class="anchor"></a>Output multiplier</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../reference/output_multiplier.html">output_multiplier</a></span>(L)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt;           [,1]</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt;  [1,] 1.890084</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt;  [2,] 1.565594</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt;  [3,] 1.884156</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt;  [4,] 1.872177</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt;  [5,] 1.861470</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt;  [6,] 1.750310</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt;  [7,] 1.644662</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt;  [8,] 1.434695</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt;  [9,] 1.371444</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; [10,] 1.441042</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; [11,] 1.395462</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; [12,] 1.356191</span></a></code></pre></div>
-</div>
-<div id="household-income-multiplier" class="section level3">
-<h3 class="hasAnchor">
-<a href="#household-income-multiplier" class="anchor"></a>Household income multiplier</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">h &lt;-<span class="st"> </span><span class="kw"><a href="../reference/household_income_multiplier.html">household_income_multiplier</a></span>(L,w)</a></code></pre></div>
-</div>
-<div id="income-multiplier" class="section level3">
-<h3 class="hasAnchor">
-<a href="#income-multiplier" class="anchor"></a>Income multiplier</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/income_multiplier.html">income_multiplier</a></span>(L,w)</a></code></pre></div>
-</div>
-<div id="power-of-dispersion" class="section level3">
-<h3 class="hasAnchor">
-<a href="#power-of-dispersion" class="anchor"></a>Power of dispersion</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">bl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/power_dispersion.html">power_dispersion</a></span>(L)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">bl_cv &lt;-<span class="st"> </span><span class="kw"><a href="../reference/power_dispersion_cv.html">power_dispersion_cv</a></span>(L)</a></code></pre></div>
-</div>
-<div id="forward-linkage" class="section level3">
-<h3 class="hasAnchor">
-<a href="#forward-linkage" class="anchor"></a>Forward linkage</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">bl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/sensitivity_dispersion.html">sensitivity_dispersion</a></span>(L)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">bl_cv &lt;-<span class="st"> </span><span class="kw"><a href="../reference/sensitivity_dispersion_cv.html">sensitivity_dispersion_cv</a></span>(L)</a></code></pre></div>
-</div>
-</div>
-<div id="ghosh-approach" class="section level2">
-<h2 class="hasAnchor">
-<a href="#ghosh-approach" class="anchor"></a>Ghosh approach</h2>
-<div id="output-allocation-matrix" class="section level3">
-<h3 class="hasAnchor">
-<a href="#output-allocation-matrix" class="anchor"></a>Output allocation matrix</h3>
-<p>Let <code>B</code> be the output allocation matrix.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">B &lt;-<span class="st"> </span><span class="kw"><a href="../reference/output_allocation.html">output_allocation</a></span>(X, d)</a></code></pre></div>
-</div>
-<div id="ghosh-inverse-matrix" class="section level3">
-<h3 class="hasAnchor">
-<a href="#ghosh-inverse-matrix" class="anchor"></a>Ghosh inverse matrix</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">G &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ghosh_inverse.html">ghosh_inverse</a></span>(A)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">out &lt;-<span class="st"> </span><span class="kw"><a href="../reference/output_multiplier.html">output_multiplier</a></span>(L)</a></code></pre></div>
 </div>
 <div id="input-multiplier" class="section level3">
 <h3 class="hasAnchor">
 <a href="#input-multiplier" class="anchor"></a>Input multiplier</h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="../reference/input_multiplier.html">input_multiplier</a></span>(G)</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#&gt;           [,1]</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#&gt;  [1,] 1.890084</span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt;  [2,] 1.565594</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt;  [3,] 1.884156</span></a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt;  [4,] 1.872177</span></a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt;  [5,] 1.861470</span></a>
-<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt;  [6,] 1.750310</span></a>
-<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#&gt;  [7,] 1.644662</span></a>
-<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt;  [8,] 1.434695</span></a>
-<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co">#&gt;  [9,] 1.371444</span></a>
-<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="co">#&gt; [10,] 1.441042</span></a>
-<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="co">#&gt; [11,] 1.395462</span></a>
-<a class="sourceLine" id="cb12-14" data-line-number="14"><span class="co">#&gt; [12,] 1.356191</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">inp &lt;-<span class="st"> </span><span class="kw"><a href="../reference/input_multiplier.html">input_multiplier</a></span>(G)</a></code></pre></div>
 </div>
+<div id="income-multiplier" class="section level3">
+<h3 class="hasAnchor">
+<a href="#income-multiplier" class="anchor"></a>Income multiplier</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">inc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/income_multiplier.html">income_multiplier</a></span>(L,w)</a></code></pre></div>
+</div>
+<div id="summary-of-multipliers" class="section level3">
+<h3 class="hasAnchor">
+<a href="#summary-of-multipliers" class="anchor"></a>Summary of multipliers</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">sm &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(out,inp,inc)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(sm) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(X)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(sm) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"output_multiplier"</span>, <span class="st">"input_multiplier"</span>, <span class="st">"income_multiplier"</span>)</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">sm</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co">#&gt;                                      output_multiplier input_multiplier</span></a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="co">#&gt; agriculture_fishing                           1.890084         1.890084</span></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="co">#&gt; mining                                        1.565594         1.565594</span></a>
+<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="co">#&gt; manufacturing_industry                        1.884156         1.884156</span></a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="co">#&gt; electricity_gas_water                         1.872177         1.872177</span></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="co">#&gt; construction                                  1.861470         1.861470</span></a>
+<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="co">#&gt; retail_hotels_restaurants                     1.750310         1.750310</span></a>
+<a class="sourceLine" id="cb10-12" data-line-number="12"><span class="co">#&gt; transport_communications_information          1.644662         1.644662</span></a>
+<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="co">#&gt; financial_services                            1.434695         1.434695</span></a>
+<a class="sourceLine" id="cb10-14" data-line-number="14"><span class="co">#&gt; real_state                                    1.371444         1.371444</span></a>
+<a class="sourceLine" id="cb10-15" data-line-number="15"><span class="co">#&gt; business_services                             1.441042         1.441042</span></a>
+<a class="sourceLine" id="cb10-16" data-line-number="16"><span class="co">#&gt; personal_services                             1.395462         1.395462</span></a>
+<a class="sourceLine" id="cb10-17" data-line-number="17"><span class="co">#&gt; public_administration                         1.356191         1.356191</span></a>
+<a class="sourceLine" id="cb10-18" data-line-number="18"><span class="co">#&gt;                                      income_multiplier</span></a>
+<a class="sourceLine" id="cb10-19" data-line-number="19"><span class="co">#&gt; agriculture_fishing                           3.211780</span></a>
+<a class="sourceLine" id="cb10-20" data-line-number="20"><span class="co">#&gt; mining                                        1.991218</span></a>
+<a class="sourceLine" id="cb10-21" data-line-number="21"><span class="co">#&gt; manufacturing_industry                        1.732771</span></a>
+<a class="sourceLine" id="cb10-22" data-line-number="22"><span class="co">#&gt; electricity_gas_water                         4.854063</span></a>
+<a class="sourceLine" id="cb10-23" data-line-number="23"><span class="co">#&gt; construction                                  1.827051</span></a>
+<a class="sourceLine" id="cb10-24" data-line-number="24"><span class="co">#&gt; retail_hotels_restaurants                     1.453131</span></a>
+<a class="sourceLine" id="cb10-25" data-line-number="25"><span class="co">#&gt; transport_communications_information          1.756902</span></a>
+<a class="sourceLine" id="cb10-26" data-line-number="26"><span class="co">#&gt; financial_services                            1.690974</span></a>
+<a class="sourceLine" id="cb10-27" data-line-number="27"><span class="co">#&gt; real_state                                    5.470555</span></a>
+<a class="sourceLine" id="cb10-28" data-line-number="28"><span class="co">#&gt; business_services                             1.341252</span></a>
+<a class="sourceLine" id="cb10-29" data-line-number="29"><span class="co">#&gt; personal_services                             1.176133</span></a>
+<a class="sourceLine" id="cb10-30" data-line-number="30"><span class="co">#&gt; public_administration                         1.322962</span></a></code></pre></div>
+</div>
+</div>
+<div id="linkages" class="section level2">
+<h2 class="hasAnchor">
+<a href="#linkages" class="anchor"></a>Linkages</h2>
+<div id="backward-and-forward-linkage" class="section level3">
+<h3 class="hasAnchor">
+<a href="#backward-and-forward-linkage" class="anchor"></a>Backward and forward linkage</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">bl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/backward_linkage.html">backward_linkage</a></span>(A)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">fl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/forward_linkage.html">forward_linkage</a></span>(A)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">bfl &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(bl,fl)</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(bfl) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(X)</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(bfl) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"backward_linkage"</span>, <span class="st">"forward_linkage"</span>)</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">bfl</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt;                                      backward_linkage forward_linkage</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; agriculture_fishing                         0.4963879      0.28767403</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt; mining                                      0.3431237      0.12264465</span></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">#&gt; manufacturing_industry                      0.5055072      0.86912923</span></a>
+<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="co">#&gt; electricity_gas_water                       0.4856295      0.49142145</span></a>
+<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="co">#&gt; construction                                0.4867352      0.32223702</span></a>
+<a class="sourceLine" id="cb11-13" data-line-number="13"><span class="co">#&gt; retail_hotels_restaurants                   0.4617742      0.42446699</span></a>
+<a class="sourceLine" id="cb11-14" data-line-number="14"><span class="co">#&gt; transport_communications_information        0.3930415      0.56097116</span></a>
+<a class="sourceLine" id="cb11-15" data-line-number="15"><span class="co">#&gt; financial_services                          0.2881891      0.32954644</span></a>
+<a class="sourceLine" id="cb11-16" data-line-number="16"><span class="co">#&gt; real_state                                  0.2173270      0.15866406</span></a>
+<a class="sourceLine" id="cb11-17" data-line-number="17"><span class="co">#&gt; business_services                           0.2831318      0.76983671</span></a>
+<a class="sourceLine" id="cb11-18" data-line-number="18"><span class="co">#&gt; personal_services                           0.2428914      0.05920631</span></a>
+<a class="sourceLine" id="cb11-19" data-line-number="19"><span class="co">#&gt; public_administration                       0.2113550      0.01929541</span></a></code></pre></div>
+</div>
+<div id="power-of-dispersion" class="section level3">
+<h3 class="hasAnchor">
+<a href="#power-of-dispersion" class="anchor"></a>Power of dispersion</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">bl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/power_dispersion.html">power_dispersion</a></span>(L)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">bl_cv &lt;-<span class="st"> </span><span class="kw"><a href="../reference/power_dispersion_cv.html">power_dispersion_cv</a></span>(L)</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">bl_t &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(bl,bl_cv)</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(bl_t) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(X)</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(bl_t) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"power_dispersion"</span>, <span class="st">"power_dispersion_cv"</span>)</a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">bl_t</a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt;                                      power_dispersion power_dispersion_cv</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt; agriculture_fishing                         1.1650829            2.138211</span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#&gt; mining                                      0.9650615            2.396828</span></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt; manufacturing_industry                      1.1614288            2.104734</span></a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co">#&gt; electricity_gas_water                       1.1540450            2.592275</span></a>
+<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="co">#&gt; construction                                1.1474450            2.068456</span></a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="co">#&gt; retail_hotels_restaurants                   1.0789236            2.045566</span></a>
+<a class="sourceLine" id="cb12-14" data-line-number="14"><span class="co">#&gt; transport_communications_information        1.0138006            2.378536</span></a>
+<a class="sourceLine" id="cb12-15" data-line-number="15"><span class="co">#&gt; financial_services                          0.8843731            2.682109</span></a>
+<a class="sourceLine" id="cb12-16" data-line-number="16"><span class="co">#&gt; real_state                                  0.8453838            2.595140</span></a>
+<a class="sourceLine" id="cb12-17" data-line-number="17"><span class="co">#&gt; business_services                           0.8882854            2.639136</span></a>
+<a class="sourceLine" id="cb12-18" data-line-number="18"><span class="co">#&gt; personal_services                           0.8601886            2.649113</span></a>
+<a class="sourceLine" id="cb12-19" data-line-number="19"><span class="co">#&gt; public_administration                       0.8359816            2.662192</span></a></code></pre></div>
+</div>
+<div id="sensitivity-of-dispersion" class="section level3">
+<h3 class="hasAnchor">
+<a href="#sensitivity-of-dispersion" class="anchor"></a>Sensitivity of dispersion</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">sl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/sensitivity_dispersion.html">sensitivity_dispersion</a></span>(L)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">sl_cv &lt;-<span class="st"> </span><span class="kw"><a href="../reference/sensitivity_dispersion_cv.html">sensitivity_dispersion_cv</a></span>(L)</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">sl_t &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(sl,sl_cv)</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(sl_t) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(X)</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(sl_t) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"power_dispersion"</span>, <span class="st">"power_dispersion_cv"</span>)</a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">sl_t</a>
+<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co">#&gt;                                      power_dispersion power_dispersion_cv</span></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="co">#&gt; agriculture_fishing                         0.9646691            2.599260</span></a>
+<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="co">#&gt; mining                                      0.7360558            3.124340</span></a>
+<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="co">#&gt; manufacturing_industry                      1.5258532            1.538170</span></a>
+<a class="sourceLine" id="cb13-11" data-line-number="11"><span class="co">#&gt; electricity_gas_water                       1.1357152            2.629518</span></a>
+<a class="sourceLine" id="cb13-12" data-line-number="12"><span class="co">#&gt; construction                                0.8869183            2.679795</span></a>
+<a class="sourceLine" id="cb13-13" data-line-number="13"><span class="co">#&gt; retail_hotels_restaurants                   1.0578977            2.094117</span></a>
+<a class="sourceLine" id="cb13-14" data-line-number="14"><span class="co">#&gt; transport_communications_information        1.2337851            1.941557</span></a>
+<a class="sourceLine" id="cb13-15" data-line-number="15"><span class="co">#&gt; financial_services                          0.9471885            2.514745</span></a>
+<a class="sourceLine" id="cb13-16" data-line-number="16"><span class="co">#&gt; real_state                                  0.7788941            2.842409</span></a>
+<a class="sourceLine" id="cb13-17" data-line-number="17"><span class="co">#&gt; business_services                           1.4302839            1.608411</span></a>
+<a class="sourceLine" id="cb13-18" data-line-number="18"><span class="co">#&gt; personal_services                           0.6666688            3.385689</span></a>
+<a class="sourceLine" id="cb13-19" data-line-number="19"><span class="co">#&gt; public_administration                       0.6360703            3.459516</span></a></code></pre></div>
+</div>
+<div id="multiplier-product-matrix" class="section level3">
+<h3 class="hasAnchor">
+<a href="#multiplier-product-matrix" class="anchor"></a>Multiplier product matrix</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="../reference/multiplier_product_matrix.html">multiplier_product_matrix</a></span>(L)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="co">#&gt;            [,1]       [,2]      [,3]      [,4]      [,5]      [,6]      [,7]</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">#&gt;  [1,] 0.1519421 0.11593391 0.2403325 0.1788831 0.1396958 0.1666263 0.1943297</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;  [2,] 0.1258567 0.09603039 0.1990722 0.1481724 0.1157128 0.1380199 0.1609672</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt;  [3,] 0.1514656 0.11557030 0.2395787 0.1783220 0.1392577 0.1661037 0.1937203</span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt;  [4,] 0.1505026 0.11483557 0.2380556 0.1771883 0.1383723 0.1650477 0.1924887</span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt;  [5,] 0.1496419 0.11417882 0.2366942 0.1761750 0.1375810 0.1641037 0.1913878</span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt;  [6,] 0.1407058 0.10736046 0.2225596 0.1656544 0.1293651 0.1543041 0.1799588</span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt;  [7,] 0.1322129 0.10088027 0.2091261 0.1556557 0.1215568 0.1449904 0.1690967</span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt;  [8,] 0.1153339 0.08800133 0.1824279 0.1357838 0.1060381 0.1264801 0.1475088</span></a>
+<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt;  [9,] 0.1102491 0.08412161 0.1743852 0.1297975 0.1013632 0.1209040 0.1410056</span></a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt; [10,] 0.1158441 0.08839062 0.1832349 0.1363845 0.1065072 0.1270396 0.1481614</span></a>
+<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt; [11,] 0.1121799 0.08559479 0.1774391 0.1320706 0.1031384 0.1230213 0.1434750</span></a>
+<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt; [12,] 0.1090230 0.08318603 0.1724457 0.1283539 0.1002359 0.1195593 0.1394374</span></a>
+<a class="sourceLine" id="cb14-15" data-line-number="15"><span class="co">#&gt;            [,8]       [,9]     [,10]      [,11]      [,12]</span></a>
+<a class="sourceLine" id="cb14-16" data-line-number="16"><span class="co">#&gt;  [1,] 0.1491888 0.12268125 0.2252797 0.10500499 0.10018550</span></a>
+<a class="sourceLine" id="cb14-17" data-line-number="17"><span class="co">#&gt;  [2,] 0.1235761 0.10161934 0.1866037 0.08697774 0.08298566</span></a>
+<a class="sourceLine" id="cb14-18" data-line-number="18"><span class="co">#&gt;  [3,] 0.1487209 0.12229648 0.2245731 0.10467565 0.09987128</span></a>
+<a class="sourceLine" id="cb14-19" data-line-number="19"><span class="co">#&gt;  [4,] 0.1477754 0.12151898 0.2231454 0.10401018 0.09923635</span></a>
+<a class="sourceLine" id="cb14-20" data-line-number="20"><span class="co">#&gt;  [5,] 0.1469303 0.12082401 0.2218692 0.10341534 0.09866882</span></a>
+<a class="sourceLine" id="cb14-21" data-line-number="21"><span class="co">#&gt;  [6,] 0.1381561 0.11360883 0.2086200 0.09723974 0.09277667</span></a>
+<a class="sourceLine" id="cb14-22" data-line-number="22"><span class="co">#&gt;  [7,] 0.1298171 0.10675149 0.1960278 0.09137043 0.08717674</span></a>
+<a class="sourceLine" id="cb14-23" data-line-number="23"><span class="co">#&gt;  [8,] 0.1132439 0.09312299 0.1710018 0.07970557 0.07604726</span></a>
+<a class="sourceLine" id="cb14-24" data-line-number="24"><span class="co">#&gt;  [9,] 0.1082513 0.08901748 0.1634629 0.07619159 0.07269457</span></a>
+<a class="sourceLine" id="cb14-25" data-line-number="25"><span class="co">#&gt; [10,] 0.1137449 0.09353494 0.1717583 0.08005816 0.07638368</span></a>
+<a class="sourceLine" id="cb14-26" data-line-number="26"><span class="co">#&gt; [11,] 0.1101471 0.09057640 0.1663255 0.07752589 0.07396764</span></a>
+<a class="sourceLine" id="cb14-27" data-line-number="27"><span class="co">#&gt; [12,] 0.1070474 0.08802744 0.1616449 0.07534420 0.07188607</span></a></code></pre></div>
+</div>
+<div id="induced-effects-laborconsumption" class="section level3">
+<h3 class="hasAnchor">
+<a href="#induced-effects-laborconsumption" class="anchor"></a>Induced effects (labor/consumption)</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">bli &lt;-<span class="st"> </span><span class="kw"><a href="../reference/backward_linkage.html">backward_linkage</a></span>(A_aug)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">fli &lt;-<span class="st"> </span><span class="kw"><a href="../reference/forward_linkage.html">forward_linkage</a></span>(A_aug)</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">bfli &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(bli,fli)</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(bfli) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(X), <span class="st">"wage"</span>)</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="co"># wie = with induced effect</span></a>
+<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(bfli) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"backward_linkage_wie"</span>, <span class="st">"forward_linkage_wie"</span>)</a>
+<a class="sourceLine" id="cb15-7" data-line-number="7">bfli</a>
+<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="co">#&gt;                                      backward_linkage_wie forward_linkage_wie</span></a>
+<a class="sourceLine" id="cb15-9" data-line-number="9"><span class="co">#&gt; agriculture_fishing                             0.6425565          0.39776052</span></a>
+<a class="sourceLine" id="cb15-10" data-line-number="10"><span class="co">#&gt; mining                                          0.4334613          0.12319584</span></a>
+<a class="sourceLine" id="cb15-11" data-line-number="11"><span class="co">#&gt; manufacturing_industry                          0.6093074          1.13026830</span></a>
+<a class="sourceLine" id="cb15-12" data-line-number="12"><span class="co">#&gt; electricity_gas_water                           0.5500540          0.70151466</span></a>
+<a class="sourceLine" id="cb15-13" data-line-number="13"><span class="co">#&gt; construction                                    0.7277364          0.32275859</span></a>
+<a class="sourceLine" id="cb15-14" data-line-number="14"><span class="co">#&gt; retail_hotels_restaurants                       0.7125147          0.94695504</span></a>
+<a class="sourceLine" id="cb15-15" data-line-number="15"><span class="co">#&gt; transport_communications_information            0.5474603          0.87235967</span></a>
+<a class="sourceLine" id="cb15-16" data-line-number="16"><span class="co">#&gt; financial_services                              0.5428963          0.76758923</span></a>
+<a class="sourceLine" id="cb15-17" data-line-number="17"><span class="co">#&gt; real_state                                      0.2472873          0.85763420</span></a>
+<a class="sourceLine" id="cb15-18" data-line-number="18"><span class="co">#&gt; business_services                               0.5818527          0.82132026</span></a>
+<a class="sourceLine" id="cb15-19" data-line-number="19"><span class="co">#&gt; personal_services                               0.7968112          0.50997707</span></a>
+<a class="sourceLine" id="cb15-20" data-line-number="20"><span class="co">#&gt; public_administration                           0.7519219          0.05347458</span></a>
+<a class="sourceLine" id="cb15-21" data-line-number="21"><span class="co">#&gt; wage                                            3.0897145          2.72876641</span></a></code></pre></div>
+</div>
+</div>
+<div id="references" class="section level2">
+<h2 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h2>
+<p>Schuschny, Andrés Ricardo. <em>Tópicos sobre el modelo de insumo-producto: teoría y aplicaciones</em>. Cepal, 2005.</p>
 </div>
   </div>
 
@@ -194,10 +419,14 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#references">References</a></li>
-      <li><a href="#common-variables">Common variables</a></li>
-      <li><a href="#leontief-approach">Leontief approach</a></li>
-      <li><a href="#ghosh-approach">Ghosh approach</a></li>
+<li><a href="#common-variables">Common variables</a></li>
+      <li><a href="#input-requirement-matrix">Input requirement matrix</a></li>
+      <li><a href="#output-allocation-matrix">Output allocation matrix</a></li>
+      <li><a href="#leontief-inverse-matrix">Leontief inverse matrix</a></li>
+      <li><a href="#ghosh-inverse-matrix">Ghosh inverse matrix</a></li>
+      <li><a href="#multipliers">Multipliers</a></li>
+      <li><a href="#linkages">Linkages</a></li>
+      <li><a href="#references">References</a></li>
       </ul>
 </div>
       </div>
