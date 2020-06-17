@@ -1,8 +1,8 @@
 ---
-title: "input-output-basics"
+title: "Input-Output Analysis in R"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{input-output-basics}
+  %\VignetteIndexEntry{inputoutput}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,20 +14,19 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(inputoutput)
-```
-
 ## Common variables
 
 Let `X` be the input-output matrix, `w` the wage vector, `c` the household
-consumption vector and `d` the total final demand vector.
+consumption vector, `d` the total final demand vector, and `e` the employment coefficient.
 
 ```{r}
+library(inputoutput)
+
 X <- transaction_matrix
 w <- wage_demand_matrix[, "wage"]
 c <- wage_demand_matrix[, "household_consumption"]
 d <- wage_demand_matrix[, "final_total_demand"]
+e <- employment_matrix[, "employment_coefficient"]
 ```
 
 ## Input requirement matrix
@@ -51,19 +50,25 @@ B <- output_allocation(X, d)
 
 ## Leontief inverse matrix
 
+Let `I` be the identity matrix. Leontief inverse is the same as solving `I - A`.
+
 ```{r}
 L <- leontief_inverse(A); L
 ```
 
 ## Ghosh inverse matrix
 
+Ghosh inverse is the same as solving `I - B`.
+
 ```{r}
-G <- ghosh_inverse(A)
+G <- ghosh_inverse(A); G
 ```
 
 ## Multipliers
 
 ### Output multiplier
+
+The output multiplier is the column sum of `L`.
 
 ```{r}
 out <- output_multiplier(L)
@@ -71,22 +76,34 @@ out <- output_multiplier(L)
 
 ### Input multiplier
 
+The output multiplier is the column sum of `G`.
+
 ```{r}
 inp <- input_multiplier(G)
 ```
 
 ### Income multiplier
 
+Let `W` be a matrix where each column is `w` with the same dimension as `L`. The income multiplier is the column sum of the element-wise multiplication of `L` and `W` element-wise divided by `w`.
+
 ```{r}
 inc <- income_multiplier(L,w)
+```
+
+### Employment multiplier
+
+Let `E` be a matrix where each column is `e` with the same dimension as `L`. The employment multiplier is the column sum of the element-wise multiplication of `L` and `E` element-wise divided by `e`.
+
+```{r}
+emp <- employment_multiplier(L,e)
 ```
 
 ### Summary of multipliers
 
 ```{r}
-sm <- cbind(out,inp,inc)
+sm <- cbind(out,inp,inc,emp)
 rownames(sm) <- rownames(X)
-colnames(sm) <- c("output_multiplier", "input_multiplier", "income_multiplier")
+colnames(sm) <- c("output_multiplier", "input_multiplier", "income_multiplier", "employment_multiplier")
 sm
 ```
 
@@ -145,5 +162,6 @@ bfli
 
 ## References
 
-Schuschny, Andrés Ricardo. *Tópicos sobre el modelo de insumo-producto: teoría y aplicaciones*. Cepal, 2005.
+Schuschny, Andres Ricardo. *Topicos sobre el modelo de insumo-producto: teoria y aplicaciones*. Cepal, 2005.
 
+Pino Arriagada, Andres y Fuentes Navarro, Silvia. *Derivacion y analisis de los multiplicadores de empleo para la economia nacional*. Universidad del Bio-Bio, 2018.

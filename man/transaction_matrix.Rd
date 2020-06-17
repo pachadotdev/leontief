@@ -3,7 +3,7 @@
 \docType{data}
 \name{transaction_matrix}
 \alias{transaction_matrix}
-\title{Transaction matrix (rev. 2013)
+\title{Transaction matrix (2013 data)
 This matrix contains the production of the chilean economy divided into
 12 industries. The measuring unit is CLP million of the year 2013}
 \format{
@@ -13,7 +13,7 @@ A matrix with 12 rows and 12 columns
 demand_matrix_12x12
 }
 \description{
-Transaction matrix (rev. 2013)
+Transaction matrix (2013 data)
 This matrix contains the production of the chilean economy divided into
 12 industries. The measuring unit is CLP million of the year 2013
 }

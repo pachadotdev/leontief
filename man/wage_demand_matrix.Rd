@@ -3,7 +3,7 @@
 \docType{data}
 \name{wage_demand_matrix}
 \alias{wage_demand_matrix}
-\title{Wage and demand matrix (rev. 2008)
+\title{Wage and demand matrix (2013 data)
 This matrix contains the wage, intermediate demand and disaggregated final
 demand of the  chilean economy divided into 12 industries. The final demand
 is given by components (household consumption, government consumption, etc.)
@@ -15,7 +15,7 @@ A matrix with 12 rows and 9 columns
 wage_demand_matrix
 }
 \description{
-Wage and demand matrix (rev. 2008)
+Wage and demand matrix (2013 data)
 This matrix contains the wage, intermediate demand and disaggregated final
 demand of the  chilean economy divided into 12 industries. The final demand
 is given by components (household consumption, government consumption, etc.)

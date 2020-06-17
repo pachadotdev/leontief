@@ -79,6 +79,44 @@ equilibrium_output <- function(L, d) {
     .Call('_inputoutput_equilibrium_output', PACKAGE = 'inputoutput', L, d)
 }
 
+#' Output multiplier
+#' @param L Leontief inverse matrix
+#' @examples
+#' set.seed(200100)
+#' L <- matrix(rnorm(100), nrow = 10)
+#' output_multiplier(L)
+#' @export
+output_multiplier <- function(L) {
+    .Call('_inputoutput_output_multiplier', PACKAGE = 'inputoutput', L)
+}
+
+#' Income multiplier
+#' @param L Leontief inverse matrix
+#' @param w wage vector
+#' @export
+income_multiplier <- function(L, w) {
+    .Call('_inputoutput_income_multiplier', PACKAGE = 'inputoutput', L, w)
+}
+
+#' Employment multiplier
+#' @param L Leontief inverse matrix
+#' @param e employment vector
+#' @export
+employment_multiplier <- function(L, e) {
+    .Call('_inputoutput_employment_multiplier', PACKAGE = 'inputoutput', L, e)
+}
+
+#' Input multiplier
+#' @param G Ghosh inverse matrix
+#' @examples
+#' set.seed(200100)
+#' G <- matrix(rnorm(100), nrow = 10)
+#' output_multiplier(G)
+#' @export
+input_multiplier <- function(G) {
+    .Call('_inputoutput_input_multiplier', PACKAGE = 'inputoutput', G)
+}
+
 #' Backward linkage
 #' @param A input requirement matrix
 #' @export
@@ -126,43 +164,5 @@ sensitivity_dispersion_cv <- function(L) {
 #' @export
 multiplier_product_matrix <- function(L) {
     .Call('_inputoutput_multiplier_product_matrix', PACKAGE = 'inputoutput', L)
-}
-
-#' Output multiplier
-#' @param L Leontief inverse matrix
-#' @examples
-#' set.seed(200100)
-#' L <- matrix(rnorm(100), nrow = 10)
-#' output_multiplier(L)
-#' @export
-output_multiplier <- function(L) {
-    .Call('_inputoutput_output_multiplier', PACKAGE = 'inputoutput', L)
-}
-
-#' Income multiplier
-#' @param L Leontief inverse matrix
-#' @param w wage vector
-#' @export
-income_multiplier <- function(L, w) {
-    .Call('_inputoutput_income_multiplier', PACKAGE = 'inputoutput', L, w)
-}
-
-#' Employment multiplier
-#' @param L Leontief inverse matrix
-#' @param e employment vector
-#' @export
-employment_multiplier <- function(L, e) {
-    .Call('_inputoutput_employment_multiplier', PACKAGE = 'inputoutput', L, e)
-}
-
-#' Input multiplier
-#' @param G Ghosh inverse matrix
-#' @examples
-#' set.seed(200100)
-#' G <- matrix(rnorm(100), nrow = 10)
-#' output_multiplier(G)
-#' @export
-input_multiplier <- function(G) {
-    .Call('_inputoutput_input_multiplier', PACKAGE = 'inputoutput', G)
 }
 
