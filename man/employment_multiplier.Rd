@@ -9,7 +9,7 @@ employment_multiplier(L, e)
 \arguments{
 \item{L}{Leontief inverse matrix}
 
-\item{e}{employment vector}
+\item{e}{employment coefficients vector}
 }
 \description{
 Employment multiplier

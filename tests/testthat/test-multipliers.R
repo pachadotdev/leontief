@@ -60,18 +60,3 @@ test_that("employment_multiplier fails with incorrect dimensions (d different th
   e <- rnorm(11)
   expect_error(employment_multiplier(L,e))
 })
-
-# input_multiplier ----
-
-test_that("input_multiplier works with correct dimensions", {
-  set.seed(200100)
-  L <- matrix(rnorm(100), nrow = 10)
-  out <- input_multiplier(L)
-  expect_equal(dim(out), c(10,1))
-})
-
-test_that("input_multiplier fails with incorrect dimensions (non-square X)", {
-  set.seed(200100)
-  L <- matrix(rnorm(110), nrow = 10, ncol = 11)
-  expect_error(input_multiplier(L))
-})

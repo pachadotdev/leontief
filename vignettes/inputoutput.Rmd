@@ -2,7 +2,7 @@
 title: "Input-Output Analysis in R"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{inputoutput}
+  %\VignetteIndexEntry{Input-Output Analysis in R}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,6 +12,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(knitr)
+options(scipen=1, digits=3)
 ```
 
 ## Common variables
@@ -26,7 +28,7 @@ X <- transaction_matrix
 w <- wage_demand_matrix[, "wage"]
 c <- wage_demand_matrix[, "household_consumption"]
 d <- wage_demand_matrix[, "final_total_demand"]
-e <- employment_matrix[, "employment_coefficient"]
+e <- employment_matrix[, "employees"]
 ```
 
 ## Input requirement matrix
@@ -36,8 +38,9 @@ Let `A` be the direct coefficients matrix.
 ```{r}
 A <- input_requirement(X, d)
 A_aug <- augmented_input_requirement(X,w,c,d)
-
-A; A_aug
+rownames(A_aug) <- c(rownames(X), "wage_over_demand")
+colnames(A_aug) <- c(rownames(X), "consumption_over_demand")
+kable(A_aug)
 ```
 
 ## Output allocation matrix
@@ -46,6 +49,9 @@ Let `B` be the output allocation matrix.
 
 ```{r}
 B <- output_allocation(X, d)
+rownames(B) <- rownames(X)
+colnames(B) <- rownames(X)
+kable(B)
 ```
 
 ## Leontief inverse matrix
@@ -53,15 +59,20 @@ B <- output_allocation(X, d)
 Let `I` be the identity matrix. Leontief inverse is the same as solving `I - A`.
 
 ```{r}
-L <- leontief_inverse(A); L
+L <- leontief_inverse(A); 
+rownames(L) <- rownames(X)
+colnames(L) <- rownames(X)
+kable(L)
 ```
 
-## Ghosh inverse matrix
+## Equilibrium output
 
-Ghosh inverse is the same as solving `I - B`.
-
+The required output is given by `L * d`.
 ```{r}
-G <- ghosh_inverse(A); G
+eq <- equilibrium_output(L, d)
+rownames(eq) <- rownames(X)
+colnames(eq) <- "output"
+kable(eq)
 ```
 
 ## Multipliers
@@ -74,20 +85,12 @@ The output multiplier is the column sum of `L`.
 out <- output_multiplier(L)
 ```
 
-### Input multiplier
-
-The output multiplier is the column sum of `G`.
-
-```{r}
-inp <- input_multiplier(G)
-```
-
 ### Income multiplier
 
 Let `W` be a matrix where each column is `w` with the same dimension as `L`. The income multiplier is the column sum of the element-wise multiplication of `L` and `W` element-wise divided by `w`.
 
 ```{r}
-inc <- income_multiplier(L,w)
+inc <- income_multiplier(L, w/d)
 ```
 
 ### Employment multiplier
@@ -95,16 +98,16 @@ inc <- income_multiplier(L,w)
 Let `E` be a matrix where each column is `e` with the same dimension as `L`. The employment multiplier is the column sum of the element-wise multiplication of `L` and `E` element-wise divided by `e`.
 
 ```{r}
-emp <- employment_multiplier(L,e)
+emp <- employment_multiplier(L, e/d)
 ```
 
 ### Summary of multipliers
 
 ```{r}
-sm <- cbind(out,inp,inc,emp)
+sm <- round(cbind(out,inc,emp),4)
 rownames(sm) <- rownames(X)
-colnames(sm) <- c("output_multiplier", "input_multiplier", "income_multiplier", "employment_multiplier")
-sm
+colnames(sm) <- c("output_multiplier", "income_multiplier", "employment_multiplier")
+kable(sm)
 ```
 
 ## Linkages
@@ -117,7 +120,7 @@ fl <- forward_linkage(A)
 bfl <- cbind(bl,fl)
 rownames(bfl) <- rownames(X)
 colnames(bfl) <- c("backward_linkage", "forward_linkage")
-bfl
+kable(bfl)
 ```
 
 ### Power of dispersion
@@ -128,7 +131,7 @@ bl_cv <- power_dispersion_cv(L)
 bl_t <- cbind(bl,bl_cv)
 rownames(bl_t) <- rownames(X)
 colnames(bl_t) <- c("power_dispersion", "power_dispersion_cv")
-bl_t
+kable(bl_t)
 ```
 
 ### Sensitivity of dispersion
@@ -139,13 +142,16 @@ sl_cv <- sensitivity_dispersion_cv(L)
 sl_t <- cbind(sl,sl_cv)
 rownames(sl_t) <- rownames(X)
 colnames(sl_t) <- c("power_dispersion", "power_dispersion_cv")
-sl_t
+kable(sl_t)
 ```
 
 ### Multiplier product matrix
 
 ```{r}
-multiplier_product_matrix(L)
+mp <- multiplier_product_matrix(L)
+rownames(mp) <- rownames(X)
+colnames(mp) <- rownames(X)
+kable(mp)
 ```
 
 ### Induced effects (labor/consumption)
@@ -157,7 +163,7 @@ bfli <- cbind(bli,fli)
 rownames(bfli) <- c(rownames(X), "wage")
 # wie = with induced effect
 colnames(bfli) <- c("backward_linkage_wie", "forward_linkage_wie")
-bfli
+kable(bfli)
 ```
 
 ## References

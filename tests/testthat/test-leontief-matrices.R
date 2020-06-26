@@ -90,18 +90,3 @@ test_that("leontief_inverse fails with incorrect dimensions (non-square X)", {
   A <- matrix(rnorm(110), nrow = 10, ncol = 11)
   expect_error(leontief_inverse(A))
 })
-
-# ghosh_inverse ----
-
-test_that("ghosh_inverse works with correct dimensions", {
-  set.seed(200100)
-  A <- matrix(rnorm(100), nrow = 10)
-  out <- ghosh_inverse(A)
-  expect_equal(dim(out), c(10,10))
-})
-
-test_that("ghosh_inverse fails with incorrect dimensions (non-square X)", {
-  set.seed(200100)
-  A <- matrix(rnorm(110), nrow = 10, ncol = 11)
-  expect_error(ghosh_inverse(A))
-})

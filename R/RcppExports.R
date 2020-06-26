@@ -55,17 +55,6 @@ leontief_inverse <- function(A) {
     .Call('_inputoutput_leontief_inverse', PACKAGE = 'inputoutput', A)
 }
 
-#' Ghosh inverse
-#' @param B output allocation matrix
-#' @examples
-#' set.seed(200100)
-#' B <- matrix(rnorm(100), nrow = 10)
-#' leontief_inverse(B)
-#' @export
-ghosh_inverse <- function(B) {
-    .Call('_inputoutput_ghosh_inverse', PACKAGE = 'inputoutput', B)
-}
-
 #' Equilibrium output
 #' @param L Leontief inverse matrix
 #' @param d final demand vector
@@ -100,21 +89,10 @@ income_multiplier <- function(L, w) {
 
 #' Employment multiplier
 #' @param L Leontief inverse matrix
-#' @param e employment vector
+#' @param e employment coefficients vector
 #' @export
 employment_multiplier <- function(L, e) {
     .Call('_inputoutput_employment_multiplier', PACKAGE = 'inputoutput', L, e)
-}
-
-#' Input multiplier
-#' @param G Ghosh inverse matrix
-#' @examples
-#' set.seed(200100)
-#' G <- matrix(rnorm(100), nrow = 10)
-#' output_multiplier(G)
-#' @export
-input_multiplier <- function(G) {
-    .Call('_inputoutput_input_multiplier', PACKAGE = 'inputoutput', G)
 }
 
 #' Backward linkage

@@ -55,17 +55,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// ghosh_inverse
-arma::mat ghosh_inverse(const arma::mat& B);
-RcppExport SEXP _inputoutput_ghosh_inverse(SEXP BSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type B(BSEXP);
-    rcpp_result_gen = Rcpp::wrap(ghosh_inverse(B));
-    return rcpp_result_gen;
-END_RCPP
-}
 // equilibrium_output
 arma::mat equilibrium_output(const arma::mat& L, const arma::vec& d);
 RcppExport SEXP _inputoutput_equilibrium_output(SEXP LSEXP, SEXP dSEXP) {
@@ -110,17 +99,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const arma::mat& >::type L(LSEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type e(eSEXP);
     rcpp_result_gen = Rcpp::wrap(employment_multiplier(L, e));
-    return rcpp_result_gen;
-END_RCPP
-}
-// input_multiplier
-arma::mat input_multiplier(const arma::mat& G);
-RcppExport SEXP _inputoutput_input_multiplier(SEXP GSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type G(GSEXP);
-    rcpp_result_gen = Rcpp::wrap(input_multiplier(G));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -207,12 +185,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_inputoutput_augmented_input_requirement", (DL_FUNC) &_inputoutput_augmented_input_requirement, 4},
     {"_inputoutput_output_allocation", (DL_FUNC) &_inputoutput_output_allocation, 2},
     {"_inputoutput_leontief_inverse", (DL_FUNC) &_inputoutput_leontief_inverse, 1},
-    {"_inputoutput_ghosh_inverse", (DL_FUNC) &_inputoutput_ghosh_inverse, 1},
     {"_inputoutput_equilibrium_output", (DL_FUNC) &_inputoutput_equilibrium_output, 2},
     {"_inputoutput_output_multiplier", (DL_FUNC) &_inputoutput_output_multiplier, 1},
     {"_inputoutput_income_multiplier", (DL_FUNC) &_inputoutput_income_multiplier, 2},
     {"_inputoutput_employment_multiplier", (DL_FUNC) &_inputoutput_employment_multiplier, 2},
-    {"_inputoutput_input_multiplier", (DL_FUNC) &_inputoutput_input_multiplier, 1},
     {"_inputoutput_backward_linkage", (DL_FUNC) &_inputoutput_backward_linkage, 1},
     {"_inputoutput_forward_linkage", (DL_FUNC) &_inputoutput_forward_linkage, 1},
     {"_inputoutput_power_dispersion", (DL_FUNC) &_inputoutput_power_dispersion, 1},

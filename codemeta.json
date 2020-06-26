@@ -10,7 +10,7 @@
   "codeRepository": "https://pachamaltese.github.io/inputoutput",
   "issueTracker": "https://github.com/pachamaltese/inputoutput/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.0",
+  "version": "0.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -126,7 +126,7 @@
       "version": ">= 3.2"
     }
   ],
-  "fileSize": "22.129KB",
+  "fileSize": "20.721KB",
   "developmentStatus": "https://www.tidyverse.org/lifecycle/#maturing",
   "readme": "https://github.com/pachamaltese/inputoutput/blob/master/README.md",
   "contIntegration": "https://codecov.io/gh/pachamaltese/inputoutput?branch=master"
