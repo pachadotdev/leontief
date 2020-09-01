@@ -1,8 +1,8 @@
 ---
-title: "Input-Output Analysis in R"
+title: "Leontief's Input-Output Model in R"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Input-Output Analysis in R}
+  %\VignetteIndexEntry{Leontief's Input-Output Model in R}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -22,7 +22,7 @@ Let `X` be the input-output matrix, `w` the wage vector, `c` the household
 consumption vector, `d` the total final demand vector, and `e` the employment coefficient.
 
 ```{r}
-library(inputoutput)
+library(leontief)
 
 X <- transaction_matrix
 w <- wage_demand_matrix[, "wage"]

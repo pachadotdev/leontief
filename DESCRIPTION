@@ -1,8 +1,8 @@
-Package: inputoutput
+Package: leontief
 Type: Package
 Title: Input-Output Analysis
-Version: 0.1
-Date: 2020-03-26
+Version: 0.2
+Date: 2020-09-01
 Authors@R: c(
       person(given = "Mauricio",
         family = "Vargas",
@@ -12,7 +12,9 @@ Authors@R: c(
       person(family = "Central Bank of Chile",
         role = "dtc")
     )
-Description: Input-Output Analysis (Macroeconomics) in R.
+Description: An implementation of the Input-Output model developed by
+    Wassily Leontief that represents the interdependencies between different 
+    sectors of a national economy or different regional economies.
 License: GPL-3
 Imports: 
     Rcpp
@@ -27,7 +29,7 @@ VignetteBuilder: knitr
 LazyData: true
 Depends: 
     R (>= 3.2)
-URL: https://pachamaltese.github.io/inputoutput
-BugReports: https://github.com/pachamaltese/inputoutput/issues
+URL: https://pachamaltese.github.io/leontief
+BugReports: https://github.com/pachamaltese/leontief/issues
 Encoding: UTF-8
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1

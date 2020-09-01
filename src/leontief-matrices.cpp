@@ -197,6 +197,28 @@ arma::mat employment_multiplier(const arma::mat & L, const arma::vec & e) {
     return arma::sum(E * L,0).t();
 }
 
+//' Employment number
+//' @param L Leontief inverse matrix
+//' @param e employment coefficients vector
+//' @param c change in final demand
+//' @export
+// [[Rcpp::export]]
+arma::mat employment_number(const arma::mat & L, const arma::vec & e, const arma::vec & c) {
+    bool L_square = (L.n_rows == L.n_cols);
+    bool compatible_dimensions = ((L.n_rows == e.n_elem) & (L.n_rows == c.n_elem));
+    if(L_square == FALSE) {
+        Rcpp::stop("Leontief inverse matrix must be square.");
+    }
+    if(compatible_dimensions == FALSE) {
+        Rcpp::stop("e and c are required to have the same number of elements as the number of rows in L.");
+    }
+    
+    arma::mat E = arma::zeros<arma::mat>(e.n_elem,e.n_elem);
+    E.diag() += e;
+    
+    return ((E * L) * c);
+}
+
 //' Backward linkage
 //' @param A input requirement matrix
 //' @export

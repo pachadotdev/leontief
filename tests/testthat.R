@@ -1,4 +1,4 @@
 library(testthat)
-library(inputoutput)
+library(leontief)
 
-test_check("inputoutput")
+test_check("leontief")

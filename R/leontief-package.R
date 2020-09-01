@@ -1,4 +1,4 @@
-#' @useDynLib inputoutput
+#' @useDynLib leontief
 #' @importFrom Rcpp evalCpp
 NULL
 
@@ -42,5 +42,5 @@ NULL
 NULL
 
 .onUnload <- function (libpath) {
-  library.dynam.unload("inputoutput", libpath)
+  library.dynam.unload("leontief", libpath)
 }
