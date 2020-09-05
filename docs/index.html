@@ -80,14 +80,16 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>This package is not available from CRAN at the present time. It can be installed from GitHub by running:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/source.html">source</a></span>(<span class="st">"https://install-github.me/pachamaltese/leontief"</span>)</pre></div>
+<p>Stable version (CRAN):</p>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"leontief"</span>)</pre></div>
+<p>Development version (GitHub):</p>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"https://install-github.me/pachamaltese/leontief"</span>)</pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>This is a basic example which shows you how to obtain the input requirement matrix:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">leontief</span>)
+<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">leontief</span>)
 
 <span class="co"># use a real input-output matrix and final demand vector</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">200100</span>)
@@ -108,6 +110,8 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=leontief">https://​cloud.r-project.org/​package=leontief</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/pachamaltese/leontief/">https://​github.com/​pachamaltese/​leontief/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/pachamaltese/leontief/issues">https://​github.com/​pachamaltese/​leontief/​issues</a>
@@ -140,6 +144,7 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/pachamaltese/leontief/actions"><img src="https://github.com/pachamaltese/leontief/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://cran.r-project.org/package=leontief"><img src="https://www.r-pkg.org/badges/version/leontief" alt="CRAN status"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#stable"><img src="https://img.shields.io/badge/lifecycle-stable-blue.svg" alt="Lifecycle: stable"></a></li>
 <li><a href="https://codecov.io/gh/pachamaltese/leontief?branch=master"><img src="https://codecov.io/gh/pachamaltese/leontief/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 </ul>

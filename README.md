@@ -3,6 +3,8 @@
 
 <!-- badges: start -->
 [![R build status](https://github.com/pachamaltese/leontief/workflows/R-CMD-check/badge.svg)](https://github.com/pachamaltese/leontief/actions)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/leontief)](https://cran.r-project.org/package=leontief)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-blue.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Codecov test coverage](https://codecov.io/gh/pachamaltese/leontief/branch/master/graph/badge.svg)](https://codecov.io/gh/pachamaltese/leontief?branch=master)
 <!-- badges: end -->
@@ -13,10 +15,14 @@ different sectors of a national economy or different regional economies.
 
 ## Installation
 
-This package is not available from CRAN at the present time. It can be installed
-from GitHub by running:
+Stable version (CRAN):
 ``` r
-source("https://install-github.me/pachamaltese/leontief")
+install.packages("leontief")
+```
+
+Development version (GitHub):
+``` r
+devtools::install_github("https://install-github.me/pachamaltese/leontief")
 ```
 
 ## Example

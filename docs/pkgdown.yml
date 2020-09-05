@@ -1,7 +1,6 @@
 pandoc: 2.7.3
 pkgdown: 1.5.1
 pkgdown_sha: ~
-articles:
-  leontief: leontief.html
-last_built: 2020-09-01T16:49Z
+articles: []
+last_built: 2020-09-05T16:33Z
 

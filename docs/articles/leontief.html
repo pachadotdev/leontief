@@ -96,8 +96,8 @@
 <h2 class="hasAnchor">
 <a href="#input-requirement-matrix" class="anchor"></a>Input requirement matrix</h2>
 <p>Let <code>A</code> be the direct coefficients matrix.</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">A</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/input_requirement.html">input_requirement</a></span>(<span class="no">X</span>, <span class="no">d</span>)
-<span class="no">A_aug</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/augmented_input_requirement.html">augmented_input_requirement</a></span>(<span class="no">X</span>,<span class="no">w</span>,<span class="no">c</span>,<span class="no">d</span>)
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">A</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leontief/man/input_requirement.html">input_requirement</a></span>(<span class="no">X</span>, <span class="no">d</span>)
+<span class="no">A_aug</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leontief/man/augmented_input_requirement.html">augmented_input_requirement</a></span>(<span class="no">X</span>,<span class="no">w</span>,<span class="no">c</span>,<span class="no">d</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">A_aug</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">X</span>), <span class="st">"wage_over_demand"</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">A_aug</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">X</span>), <span class="st">"consumption_over_demand"</span>)
 <span class="fu">kable</span>(<span class="no">A_aug</span>)</pre></body></html></div>
@@ -350,7 +350,7 @@
 <h2 class="hasAnchor">
 <a href="#output-allocation-matrix" class="anchor"></a>Output allocation matrix</h2>
 <p>Let <code>B</code> be the output allocation matrix.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">B</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/output_allocation.html">output_allocation</a></span>(<span class="no">X</span>, <span class="no">d</span>)
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">B</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leontief/man/output_allocation.html">output_allocation</a></span>(<span class="no">X</span>, <span class="no">d</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">B</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">X</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">B</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">X</span>)
 <span class="fu">kable</span>(<span class="no">B</span>)</pre></body></html></div>
@@ -573,7 +573,7 @@
 <h2 class="hasAnchor">
 <a href="#leontief-inverse-matrix" class="anchor"></a>Leontief inverse matrix</h2>
 <p>Let <code>I</code> be the identity matrix. Leontief inverse is the same as solving <code>I - A</code>.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">L</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/leontief_inverse.html">leontief_inverse</a></span>(<span class="no">A</span>);
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">L</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leontief/man/leontief_inverse.html">leontief_inverse</a></span>(<span class="no">A</span>);
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">L</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">X</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">L</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">X</span>)
 <span class="fu">kable</span>(<span class="no">L</span>)</pre></body></html></div>
@@ -796,7 +796,7 @@
 <h2 class="hasAnchor">
 <a href="#equilibrium-output" class="anchor"></a>Equilibrium output</h2>
 <p>The required output is given by <code>L * d</code>.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">eq</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/equilibrium_output.html">equilibrium_output</a></span>(<span class="no">L</span>, <span class="no">d</span>)
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">eq</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leontief/man/equilibrium_output.html">equilibrium_output</a></span>(<span class="no">L</span>, <span class="no">d</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">eq</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">X</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">eq</span>) <span class="kw">&lt;-</span> <span class="st">"output"</span>
 <span class="fu">kable</span>(<span class="no">eq</span>)</pre></body></html></div>
@@ -864,19 +864,19 @@
 <h3 class="hasAnchor">
 <a href="#output-multiplier" class="anchor"></a>Output multiplier</h3>
 <p>The output multiplier is the column sum of <code>L</code>.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">out</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/output_multiplier.html">output_multiplier</a></span>(<span class="no">L</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">out</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leontief/man/output_multiplier.html">output_multiplier</a></span>(<span class="no">L</span>)</pre></body></html></div>
 </div>
 <div id="income-multiplier" class="section level3">
 <h3 class="hasAnchor">
 <a href="#income-multiplier" class="anchor"></a>Income multiplier</h3>
 <p>Let <code>W</code> be a matrix where each column is <code>w</code> with the same dimension as <code>L</code>. The income multiplier is the column sum of the element-wise multiplication of <code>L</code> and <code>W</code> element-wise divided by <code>w</code>.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">inc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/income_multiplier.html">income_multiplier</a></span>(<span class="no">L</span>, <span class="no">w</span>/<span class="no">d</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">inc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leontief/man/income_multiplier.html">income_multiplier</a></span>(<span class="no">L</span>, <span class="no">w</span>/<span class="no">d</span>)</pre></body></html></div>
 </div>
 <div id="employment-multiplier" class="section level3">
 <h3 class="hasAnchor">
 <a href="#employment-multiplier" class="anchor"></a>Employment multiplier</h3>
 <p>Let <code>E</code> be a matrix where each column is <code>e</code> with the same dimension as <code>L</code>. The employment multiplier is the column sum of the element-wise multiplication of <code>L</code> and <code>E</code> element-wise divided by <code>e</code>.</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">emp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/employment_multiplier.html">employment_multiplier</a></span>(<span class="no">L</span>, <span class="no">e</span>/<span class="no">d</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">emp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leontief/man/employment_multiplier.html">employment_multiplier</a></span>(<span class="no">L</span>, <span class="no">e</span>/<span class="no">d</span>)</pre></body></html></div>
 </div>
 <div id="summary-of-multipliers" class="section level3">
 <h3 class="hasAnchor">
@@ -931,7 +931,7 @@
 </tr>
 <tr class="odd">
 <td align="left">transport_communications_information</td>
-<td align="right">1.64</td>
+<td align="right">1.65</td>
 <td align="right">0.278</td>
 <td align="right">41.3</td>
 </tr>
@@ -975,8 +975,8 @@
 <div id="backward-and-forward-linkage" class="section level3">
 <h3 class="hasAnchor">
 <a href="#backward-and-forward-linkage" class="anchor"></a>Backward and forward linkage</h3>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">bl</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/backward_linkage.html">backward_linkage</a></span>(<span class="no">A</span>)
-<span class="no">fl</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/forward_linkage.html">forward_linkage</a></span>(<span class="no">A</span>)
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">bl</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leontief/man/backward_linkage.html">backward_linkage</a></span>(<span class="no">A</span>)
+<span class="no">fl</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leontief/man/forward_linkage.html">forward_linkage</a></span>(<span class="no">A</span>)
 <span class="no">bfl</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">bl</span>,<span class="no">fl</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">bfl</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">X</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">bfl</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"backward_linkage"</span>, <span class="st">"forward_linkage"</span>)
@@ -1054,8 +1054,8 @@
 <div id="power-of-dispersion" class="section level3">
 <h3 class="hasAnchor">
 <a href="#power-of-dispersion" class="anchor"></a>Power of dispersion</h3>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">bl</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/power_dispersion.html">power_dispersion</a></span>(<span class="no">L</span>)
-<span class="no">bl_cv</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/power_dispersion_cv.html">power_dispersion_cv</a></span>(<span class="no">L</span>)
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">bl</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leontief/man/power_dispersion.html">power_dispersion</a></span>(<span class="no">L</span>)
+<span class="no">bl_cv</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leontief/man/power_dispersion_cv.html">power_dispersion_cv</a></span>(<span class="no">L</span>)
 <span class="no">bl_t</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">bl</span>,<span class="no">bl_cv</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">bl_t</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">X</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">bl_t</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"power_dispersion"</span>, <span class="st">"power_dispersion_cv"</span>)
@@ -1133,8 +1133,8 @@
 <div id="sensitivity-of-dispersion" class="section level3">
 <h3 class="hasAnchor">
 <a href="#sensitivity-of-dispersion" class="anchor"></a>Sensitivity of dispersion</h3>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">sl</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/sensitivity_dispersion.html">sensitivity_dispersion</a></span>(<span class="no">L</span>)
-<span class="no">sl_cv</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/sensitivity_dispersion_cv.html">sensitivity_dispersion_cv</a></span>(<span class="no">L</span>)
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">sl</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leontief/man/sensitivity_dispersion.html">sensitivity_dispersion</a></span>(<span class="no">L</span>)
+<span class="no">sl_cv</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leontief/man/sensitivity_dispersion_cv.html">sensitivity_dispersion_cv</a></span>(<span class="no">L</span>)
 <span class="no">sl_t</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">sl</span>,<span class="no">sl_cv</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">sl_t</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">X</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">sl_t</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"power_dispersion"</span>, <span class="st">"power_dispersion_cv"</span>)
@@ -1212,7 +1212,7 @@
 <div id="multiplier-product-matrix" class="section level3">
 <h3 class="hasAnchor">
 <a href="#multiplier-product-matrix" class="anchor"></a>Multiplier product matrix</h3>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">mp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/multiplier_product_matrix.html">multiplier_product_matrix</a></span>(<span class="no">L</span>)
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">mp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leontief/man/multiplier_product_matrix.html">multiplier_product_matrix</a></span>(<span class="no">L</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">mp</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">X</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">mp</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">X</span>)
 <span class="fu">kable</span>(<span class="no">mp</span>)</pre></body></html></div>
@@ -1434,8 +1434,8 @@
 <div id="induced-effects-laborconsumption" class="section level3">
 <h3 class="hasAnchor">
 <a href="#induced-effects-laborconsumption" class="anchor"></a>Induced effects (labor/consumption)</h3>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">bli</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/backward_linkage.html">backward_linkage</a></span>(<span class="no">A_aug</span>)
-<span class="no">fli</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/forward_linkage.html">forward_linkage</a></span>(<span class="no">A_aug</span>)
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">bli</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leontief/man/backward_linkage.html">backward_linkage</a></span>(<span class="no">A_aug</span>)
+<span class="no">fli</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leontief/man/forward_linkage.html">forward_linkage</a></span>(<span class="no">A_aug</span>)
 <span class="no">bfli</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">bli</span>,<span class="no">fli</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">bfli</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">X</span>), <span class="st">"wage"</span>)
 <span class="co"># wie = with induced effect</span>
