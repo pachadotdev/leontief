@@ -6,6 +6,7 @@
 status](https://www.r-pkg.org/badges/version/leontief)](https://cran.r-project.org/package=leontief)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-blue.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Codecov test coverage](https://codecov.io/gh/pachadotdev/leontief/branch/master/graph/badge.svg)](https://codecov.io/gh/pachadotdev/leontief?branch=master)
+[![R-CMD-check](https://github.com/pachadotdev/leontief/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pachadotdev/leontief/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of leontief is to provide an implementation of the Input-Output 
