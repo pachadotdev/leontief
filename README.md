@@ -1,12 +1,11 @@
-
 # leontief
 
 <!-- badges: start -->
-[![R build status](https://github.com/pachamaltese/leontief/workflows/R-CMD-check/badge.svg)](https://github.com/pachamaltese/leontief/actions)
+[![R build status](https://github.com/pachadotdev/leontief/workflows/R-CMD-check/badge.svg)](https://github.com/pachadotdev/leontief/actions)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/leontief)](https://cran.r-project.org/package=leontief)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-blue.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![Codecov test coverage](https://codecov.io/gh/pachamaltese/leontief/branch/master/graph/badge.svg)](https://codecov.io/gh/pachamaltese/leontief?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/pachadotdev/leontief/branch/master/graph/badge.svg)](https://codecov.io/gh/pachadotdev/leontief?branch=master)
 <!-- badges: end -->
 
 The goal of leontief is to provide an implementation of the Input-Output 
@@ -22,7 +21,7 @@ install.packages("leontief")
 
 Development version (GitHub):
 ``` r
-devtools::install_github("https://install-github.me/pachamaltese/leontief")
+remotes::install_github("pachadotdev/leontief")
 ```
 
 ## Example
@@ -39,6 +38,8 @@ d <- rnorm(10)
 
 input_requirement_matrix(X,d)
 ```
+
+Please read the vignette for the details.
 
 ## Code of conduct
 

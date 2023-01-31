@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 library(knitr)
-options(scipen=1, digits=3)
+options(scipen = 1, digits = 3)
 ```
 
 ## Common variables
@@ -37,7 +37,7 @@ Let `A` be the direct coefficients matrix.
 
 ```{r}
 A <- input_requirement(X, d)
-A_aug <- augmented_input_requirement(X,w,c,d)
+A_aug <- augmented_input_requirement(X, w, c, d)
 rownames(A_aug) <- c(rownames(X), "wage_over_demand")
 colnames(A_aug) <- c(rownames(X), "consumption_over_demand")
 kable(A_aug)
@@ -59,7 +59,7 @@ kable(B)
 Let `I` be the identity matrix. Leontief inverse is the same as solving `I - A`.
 
 ```{r}
-L <- leontief_inverse(A); 
+L <- leontief_inverse(A)
 rownames(L) <- rownames(X)
 colnames(L) <- rownames(X)
 kable(L)
@@ -90,7 +90,7 @@ out <- output_multiplier(L)
 Let `W` be a matrix where each column is `w` with the same dimension as `L`. The income multiplier is the column sum of the element-wise multiplication of `L` and `W` element-wise divided by `w`.
 
 ```{r}
-inc <- income_multiplier(L, w/d)
+inc <- income_multiplier(L, w / d)
 ```
 
 ### Employment multiplier
@@ -98,13 +98,13 @@ inc <- income_multiplier(L, w/d)
 Let `E` be a matrix where each column is `e` with the same dimension as `L`. The employment multiplier is the column sum of the element-wise multiplication of `L` and `E` element-wise divided by `e`.
 
 ```{r}
-emp <- employment_multiplier(L, e/d)
+emp <- employment_multiplier(L, e / d)
 ```
 
 ### Summary of multipliers
 
 ```{r}
-sm <- round(cbind(out,inc,emp),4)
+sm <- round(cbind(out, inc, emp), 4)
 rownames(sm) <- rownames(X)
 colnames(sm) <- c("output_multiplier", "income_multiplier", "employment_multiplier")
 kable(sm)
@@ -117,7 +117,7 @@ kable(sm)
 ```{r}
 bl <- backward_linkage(A)
 fl <- forward_linkage(A)
-bfl <- cbind(bl,fl)
+bfl <- cbind(bl, fl)
 rownames(bfl) <- rownames(X)
 colnames(bfl) <- c("backward_linkage", "forward_linkage")
 kable(bfl)
@@ -128,7 +128,7 @@ kable(bfl)
 ```{r}
 bl <- power_dispersion(L)
 bl_cv <- power_dispersion_cv(L)
-bl_t <- cbind(bl,bl_cv)
+bl_t <- cbind(bl, bl_cv)
 rownames(bl_t) <- rownames(X)
 colnames(bl_t) <- c("power_dispersion", "power_dispersion_cv")
 kable(bl_t)
@@ -139,7 +139,7 @@ kable(bl_t)
 ```{r}
 sl <- sensitivity_dispersion(L)
 sl_cv <- sensitivity_dispersion_cv(L)
-sl_t <- cbind(sl,sl_cv)
+sl_t <- cbind(sl, sl_cv)
 rownames(sl_t) <- rownames(X)
 colnames(sl_t) <- c("power_dispersion", "power_dispersion_cv")
 kable(sl_t)
@@ -159,7 +159,7 @@ kable(mp)
 ```{r}
 bli <- backward_linkage(A_aug)
 fli <- forward_linkage(A_aug)
-bfli <- cbind(bli,fli)
+bfli <- cbind(bli, fli)
 rownames(bfli) <- c(rownames(X), "wage")
 # wie = with induced effect
 colnames(bfli) <- c("backward_linkage_wie", "forward_linkage_wie")

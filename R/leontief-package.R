@@ -1,14 +1,10 @@
-#' @useDynLib leontief
-#' @importFrom Rcpp evalCpp
-NULL
-
 #' Transaction matrix (2013 data)
 #' This matrix contains the production of the chilean economy divided into
 #' 12 industries. The measuring unit is CLP million of the year 2013
 #' @name transaction_matrix
 #' @docType data
 #' @author Central Bank of Chile
-#' @usage demand_matrix_12x12
+#' @usage transaction_matrix
 #' @format A matrix with 12 rows and 12 columns
 #' @references \url{https://si3.bcentral.cl/estadisticas/Principal1/Excel/CCNN/cdr/excel.html}
 #' @keywords data
@@ -40,7 +36,3 @@ NULL
 #' @references \url{http://revistas.ubiobio.cl/index.php/HHEE/article/download/3441/3473/}
 #' @keywords data
 NULL
-
-.onUnload <- function (libpath) {
-  library.dynam.unload("leontief", libpath)
-}

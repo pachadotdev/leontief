@@ -10,7 +10,7 @@ This matrix contains the production of the chilean economy divided into
 A matrix with 12 rows and 12 columns
 }
 \usage{
-demand_matrix_12x12
+transaction_matrix
 }
 \description{
 Transaction matrix (2013 data)
