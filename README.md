@@ -1,7 +1,6 @@
 # leontief
 
 <!-- badges: start -->
-[![R build status](https://github.com/pachadotdev/leontief/workflows/R-CMD-check/badge.svg)](https://github.com/pachadotdev/leontief/actions)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/leontief)](https://cran.r-project.org/package=leontief)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-blue.svg)](https://www.tidyverse.org/lifecycle/#stable)
