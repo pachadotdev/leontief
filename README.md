@@ -3,8 +3,8 @@
 <!-- badges: start -->
 [![CRAN
 status](https://www.r-pkg.org/badges/version/leontief)](https://cran.r-project.org/package=leontief)
-[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-blue.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![Codecov test coverage](https://codecov.io/gh/pachadotdev/leontief/branch/master/graph/badge.svg)](https://codecov.io/gh/pachadotdev/leontief?branch=master)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-blue.svg)](https://www.tidyverse.org/lifecycle/#stable (https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Codecov test coverage](https://codecov.io/gh/pachadotdev/leontief/branch/main/graph/badge.svg)](https://app.codecov.io/gh/pachadotdev/leontief?branch=main)
 [![R-CMD-check](https://github.com/pachadotdev/leontief/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pachadotdev/leontief/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 

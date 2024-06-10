@@ -20,7 +20,7 @@ that is the number of people divided by the total final demand from the wage and
 demand matrix.
 }
 \references{
-\url{http://revistas.ubiobio.cl/index.php/HHEE/article/download/3441/3473/}
+\url{https://revistas.ubiobio.cl/index.php/HHEE/article/download/3441/3473/}
 }
 \author{
 University of Bio-Bio, based on data from the National Bureau of Statistics

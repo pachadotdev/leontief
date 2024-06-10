@@ -8,3 +8,5 @@ data-raw
 ^\.covrignore$
 ^codemeta\.json$
 docs
+^cran-comments\.md$
+^CRAN-SUBMISSION$
