@@ -1,3 +1,7 @@
+#' @useDynLib leontief, .registration = TRUE
+#' @keywords internal
+"_PACKAGE"
+
 #' Transaction matrix (2013 data)
 #' This matrix contains the production of the chilean economy divided into
 #' 12 industries. The measuring unit is CLP million of the year 2013
