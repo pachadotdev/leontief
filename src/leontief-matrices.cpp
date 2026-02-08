@@ -1,10 +1,10 @@
-#include <cpp11.hpp>
-#include <cpp11armadillo.hpp>
+#include <cpp4r.hpp>
+#include <armadillo4r.hpp>
 
+using namespace cpp4r;
 using namespace arma;
-using namespace cpp11;
 
-[[cpp11::register]] doubles_matrix<> input_requirement_(const doubles_matrix<> &Xr, const doubles&dr) {
+[[cpp4r::register]] doubles_matrix<> input_requirement_(const doubles_matrix<> &Xr, const doubles&dr) {
     mat X = as_mat(Xr);
     mat d = as_col(dr);
 
@@ -25,7 +25,7 @@ using namespace cpp11;
     return as_doubles_matrix(res);
 }
 
-[[cpp11::register]] doubles_matrix<> augmented_input_requirement_(const doubles_matrix<> &Xr, const doubles&wr,
+[[cpp4r::register]] doubles_matrix<> augmented_input_requirement_(const doubles_matrix<> &Xr, const doubles&wr,
                             const doubles&cr, const doubles&dr) {
     mat X = as_mat(Xr);
     mat w = as_col(wr);
@@ -60,7 +60,7 @@ using namespace cpp11;
     return as_doubles_matrix(A);
 }
 
-[[cpp11::register]] doubles_matrix<> output_allocation_(const doubles_matrix<> &Xr, const doubles&dr) {
+[[cpp4r::register]] doubles_matrix<> output_allocation_(const doubles_matrix<> &Xr, const doubles&dr) {
     mat X = as_mat(Xr);
     mat d = as_col(dr);
 
@@ -80,7 +80,7 @@ using namespace cpp11;
     return as_doubles_matrix(res);
 }
 
-[[cpp11::register]] doubles_matrix<> leontief_inverse_(const doubles_matrix<> &Ar) {
+[[cpp4r::register]] doubles_matrix<> leontief_inverse_(const doubles_matrix<> &Ar) {
     mat A = as_mat(Ar);
 
     bool A_square = (A.n_rows == A.n_cols);
@@ -94,7 +94,7 @@ using namespace cpp11;
     return as_doubles_matrix(res);
 }
 
-[[cpp11::register]] doubles_matrix<> equilibrium_output_(const doubles_matrix<> &Lr, const doubles&dr) {
+[[cpp4r::register]] doubles_matrix<> equilibrium_output_(const doubles_matrix<> &Lr, const doubles&dr) {
     mat L = as_mat(Lr);
     mat d = as_col(dr);
 
@@ -111,7 +111,7 @@ using namespace cpp11;
     return as_doubles_matrix(res);
 }
 
-[[cpp11::register]] doubles_matrix<> output_multiplier_(const doubles_matrix<> &Lr) {
+[[cpp4r::register]] doubles_matrix<> output_multiplier_(const doubles_matrix<> &Lr) {
     mat L = as_mat(Lr);
 
     bool L_square = (L.n_rows == L.n_cols);
@@ -123,7 +123,7 @@ using namespace cpp11;
     return as_doubles_matrix(res);
 }
 
-[[cpp11::register]] doubles_matrix<> income_multiplier_(const doubles_matrix<> &Lr, const doubles&wr) {
+[[cpp4r::register]] doubles_matrix<> income_multiplier_(const doubles_matrix<> &Lr, const doubles&wr) {
     mat L = as_mat(Lr);
     mat w = as_col(wr);
 
@@ -143,7 +143,7 @@ using namespace cpp11;
     return as_doubles_matrix(res);
 }
 
-[[cpp11::register]] doubles_matrix<> employment_multiplier_(const doubles_matrix<> &Lr, const doubles&er) {
+[[cpp4r::register]] doubles_matrix<> employment_multiplier_(const doubles_matrix<> &Lr, const doubles&er) {
     mat L = as_mat(Lr);
     mat e = as_col(er);
 
@@ -163,7 +163,7 @@ using namespace cpp11;
     return as_doubles_matrix(res);
 }
 
-[[cpp11::register]] doubles_matrix<> employment_number_(const doubles_matrix<> &Lr, const doubles&er, const doubles&cr) {
+[[cpp4r::register]] doubles_matrix<> employment_number_(const doubles_matrix<> &Lr, const doubles&er, const doubles&cr) {
     mat L = as_mat(Lr);
     mat e = as_col(er);
     mat c = as_col(cr);
@@ -184,7 +184,7 @@ using namespace cpp11;
     return as_doubles_matrix(res);
 }
 
-[[cpp11::register]] doubles_matrix<> backward_linkage_(const doubles_matrix<> &Ar) {
+[[cpp4r::register]] doubles_matrix<> backward_linkage_(const doubles_matrix<> &Ar) {
     mat A = as_mat(Ar);
 
     bool A_square = (A.n_rows == A.n_cols);
@@ -196,7 +196,7 @@ using namespace cpp11;
     return as_doubles_matrix(res);
 }
 
-[[cpp11::register]] doubles_matrix<> forward_linkage_(const doubles_matrix<> &Ar) {
+[[cpp4r::register]] doubles_matrix<> forward_linkage_(const doubles_matrix<> &Ar) {
     mat A = as_mat(Ar);
 
     bool A_square = (A.n_rows == A.n_cols);
@@ -208,7 +208,7 @@ using namespace cpp11;
     return as_doubles_matrix(res);
 }
 
-[[cpp11::register]] doubles_matrix<> power_dispersion_(const doubles_matrix<> &Lr) {
+[[cpp4r::register]] doubles_matrix<> power_dispersion_(const doubles_matrix<> &Lr) {
     mat L = as_mat(Lr);
 
     bool L_square = (L.n_rows == L.n_cols);
@@ -222,7 +222,7 @@ using namespace cpp11;
     return as_doubles_matrix(res);
 }
 
-[[cpp11::register]] doubles_matrix<> power_dispersion_cv_(const doubles_matrix<> &Lr) {
+[[cpp4r::register]] doubles_matrix<> power_dispersion_cv_(const doubles_matrix<> &Lr) {
     mat L = as_mat(Lr);
 
     bool L_square = (L.n_rows == L.n_cols);
@@ -239,7 +239,7 @@ using namespace cpp11;
     return as_doubles_matrix(res);
 }
 
-[[cpp11::register]] doubles_matrix<> sensitivity_dispersion_(const doubles_matrix<> &Lr) {
+[[cpp4r::register]] doubles_matrix<> sensitivity_dispersion_(const doubles_matrix<> &Lr) {
     mat L = as_mat(Lr);
 
     bool L_square = (L.n_rows == L.n_cols);
@@ -253,7 +253,7 @@ using namespace cpp11;
     return as_doubles_matrix(res);
 }
 
-[[cpp11::register]] doubles_matrix<> sensitivity_dispersion_cv_(const doubles_matrix<> &Lr) {
+[[cpp4r::register]] doubles_matrix<> sensitivity_dispersion_cv_(const doubles_matrix<> &Lr) {
     mat L = as_mat(Lr);
 
     bool L_square = (L.n_rows == L.n_cols);
@@ -270,7 +270,7 @@ using namespace cpp11;
     return as_doubles_matrix(res);
 }
 
-[[cpp11::register]] doubles_matrix<> multiplier_product_matrix_(const doubles_matrix<> &Lr) {
+[[cpp4r::register]] doubles_matrix<> multiplier_product_matrix_(const doubles_matrix<> &Lr) {
     mat L = as_mat(Lr);
 
     bool L_square = (L.n_rows == L.n_cols);

@@ -37,6 +37,6 @@ NULL
 #' @author University of Bio-Bio, based on data from the National Bureau of Statistics
 #' @usage wage_demand_matrix
 #' @format A matrix with 12 rows and 2 columns
-#' @references \url{http://revistas.ubiobio.cl/index.php/HHEE/article/download/3441/3473/}
+#' @references \url{https://revistas.ubiobio.cl/index.php/HHEE/article/download/3441/3473/}
 #' @keywords data
 NULL

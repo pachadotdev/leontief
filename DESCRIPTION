@@ -27,6 +27,6 @@ Depends:
 URL: https://github.com/pachadotdev/leontief
 BugReports: https://github.com/pachadotdev/leontief/issues
 Encoding: UTF-8
-RoxygenNote: 7.3.2
-LinkingTo: cpp11, cpp11armadillo
+RoxygenNote: 7.3.3.9000
+LinkingTo: cpp4r, armadillo4r
 NeedsCompilation: yes

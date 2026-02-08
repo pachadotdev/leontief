@@ -3,8 +3,8 @@
 <!-- badges: start -->
 [![CRAN
 status](https://www.r-pkg.org/badges/version/leontief)](https://cran.r-project.org/package=leontief)
-[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-blue.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![Codecov test coverage](https://codecov.io/gh/pachadotdev/leontief/branch/master/graph/badge.svg)](https://codecov.io/gh/pachadotdev/leontief?branch=master)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Codecov test coverage](https://codecov.io/gh/pachadotdev/leontief/branch/master/graph/badge.svg)](https://app.codecov.io/gh/pachadotdev/leontief?branch=master)
 [![R-CMD-check](https://github.com/pachadotdev/leontief/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pachadotdev/leontief/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
@@ -41,8 +41,6 @@ input_requirement_matrix(X,d)
 
 Please read the vignette for the details.
 
-## Code of conduct
+## Code of Conduct
 
-Please note that the 'leontief' project is released with a
-[Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md).
-By contributing to this project, you agree to abide by its terms.
+Please note that the leontief project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
