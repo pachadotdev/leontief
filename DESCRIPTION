@@ -1,7 +1,7 @@
 Package: leontief
 Type: Package
 Title: Input-Output Analysis
-Version: 0.4
+Version: 0.5
 Authors@R: c(
       person("Mauricio", "Vargas", role = c("aut","cre"),
         email = "m.vargas.sepulveda@gmail.com",
@@ -27,6 +27,6 @@ Depends:
 URL: https://github.com/pachadotdev/leontief
 BugReports: https://github.com/pachadotdev/leontief/issues
 Encoding: UTF-8
-RoxygenNote: 7.3.3.9000
+RoxygenNote: 7.3.3
 LinkingTo: cpp4r, armadillo4r
 NeedsCompilation: yes
