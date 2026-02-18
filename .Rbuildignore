@@ -10,3 +10,4 @@ data-raw
 docs
 ^CRAN-SUBMISSION$
 ^cran-comments\.md$
+^badges$
